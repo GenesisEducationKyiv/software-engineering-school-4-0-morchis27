@@ -1,0 +1,157 @@
+2024-05-18 22:31:41,317 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-18 22:31:41,318 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-18 22:31:41,321 INFO supervisord started with pid 34
+2024-05-18 22:31:42,322 INFO spawnerr: can't find command '/usr/sbin/php-fpm'
+2024-05-18 22:31:42,324 INFO spawned: 'queue-worker' with pid 35
+2024-05-18 22:31:42,336 INFO spawned: 'schedule-worker' with pid 36
+2024-05-18 22:31:43,338 INFO spawnerr: can't find command '/usr/sbin/php-fpm'
+2024-05-18 22:31:43,339 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:31:43,339 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:31:45,902 INFO spawnerr: can't find command '/usr/sbin/php-fpm'
+2024-05-18 22:31:48,907 INFO spawnerr: can't find command '/usr/sbin/php-fpm'
+2024-05-18 22:31:48,908 INFO gave up: php-fpm entered FATAL state, too many start retries too quickly
+2024-05-18 22:33:40,654 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-18 22:33:40,655 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-18 22:33:40,658 INFO supervisord started with pid 34
+2024-05-18 22:33:41,661 INFO spawned: 'php-fpm' with pid 35
+2024-05-18 22:33:41,663 INFO spawned: 'queue-worker' with pid 36
+2024-05-18 22:33:41,665 INFO spawned: 'schedule-worker' with pid 37
+2024-05-18 22:33:42,687 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:33:42,687 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:33:42,688 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:41:15,763 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-18 22:41:15,763 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-18 22:41:15,767 INFO supervisord started with pid 92
+2024-05-18 22:41:16,769 INFO spawned: 'php-fpm' with pid 93
+2024-05-18 22:41:16,771 INFO spawned: 'queue-worker' with pid 94
+2024-05-18 22:41:16,773 INFO spawned: 'schedule-worker' with pid 95
+2024-05-18 22:41:16,792 WARN exited: php-fpm (exit status 78; not expected)
+2024-05-18 22:41:17,795 INFO spawned: 'php-fpm' with pid 96
+2024-05-18 22:41:17,795 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:41:17,795 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:41:17,810 WARN exited: php-fpm (exit status 78; not expected)
+2024-05-18 22:41:20,098 INFO spawned: 'php-fpm' with pid 103
+2024-05-18 22:41:20,113 WARN exited: php-fpm (exit status 78; not expected)
+2024-05-18 22:41:23,119 INFO spawned: 'php-fpm' with pid 104
+2024-05-18 22:41:23,140 WARN exited: php-fpm (exit status 78; not expected)
+2024-05-18 22:41:24,142 INFO gave up: php-fpm entered FATAL state, too many start retries too quickly
+2024-05-18 22:42:43,865 WARN received SIGINT indicating exit request
+2024-05-18 22:42:43,866 INFO waiting for queue-worker, schedule-worker to die
+2024-05-18 22:42:43,867 WARN stopped: schedule-worker (terminated by SIGTERM)
+2024-05-18 22:42:43,869 WARN stopped: queue-worker (terminated by SIGTERM)
+2024-05-18 22:46:20,032 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-18 22:46:20,033 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-18 22:46:20,036 INFO supervisord started with pid 34
+2024-05-18 22:46:21,038 INFO spawned: 'php-fpm' with pid 35
+2024-05-18 22:46:21,040 INFO spawned: 'queue-worker' with pid 36
+2024-05-18 22:46:21,042 INFO spawned: 'schedule-worker' with pid 37
+2024-05-18 22:46:22,055 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:46:22,055 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:46:22,055 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:49:26,456 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-18 22:49:26,457 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-18 22:49:26,460 INFO supervisord started with pid 34
+2024-05-18 22:49:27,462 INFO spawned: 'php-fpm' with pid 35
+2024-05-18 22:49:27,464 INFO spawned: 'queue-worker' with pid 36
+2024-05-18 22:49:27,466 INFO spawned: 'schedule-worker' with pid 37
+2024-05-18 22:49:28,482 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:49:28,483 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:49:28,483 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:57:15,081 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-18 22:57:15,082 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-18 22:57:15,084 INFO supervisord started with pid 34
+2024-05-18 22:57:16,087 INFO spawned: 'php-fpm' with pid 35
+2024-05-18 22:57:16,089 INFO spawned: 'queue-worker' with pid 36
+2024-05-18 22:57:16,092 INFO spawned: 'schedule-worker' with pid 37
+2024-05-18 22:57:17,107 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:57:17,107 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 22:57:17,108 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 23:20:22,535 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-18 23:20:22,535 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-18 23:20:22,539 INFO supervisord started with pid 262
+2024-05-18 23:20:23,541 INFO spawned: 'php-fpm' with pid 263
+2024-05-18 23:20:23,543 INFO spawned: 'queue-worker' with pid 264
+2024-05-18 23:20:23,545 INFO spawned: 'schedule-worker' with pid 265
+2024-05-18 23:20:23,565 WARN exited: php-fpm (exit status 78; not expected)
+2024-05-18 23:20:24,568 INFO spawned: 'php-fpm' with pid 266
+2024-05-18 23:20:24,568 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 23:20:24,569 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 23:20:24,584 WARN exited: php-fpm (exit status 78; not expected)
+2024-05-18 23:20:27,037 INFO spawned: 'php-fpm' with pid 273
+2024-05-18 23:20:27,053 WARN exited: php-fpm (exit status 78; not expected)
+2024-05-18 23:20:29,056 WARN received SIGINT indicating exit request
+2024-05-18 23:20:29,057 INFO waiting for php-fpm, queue-worker, schedule-worker to die
+2024-05-18 23:20:29,058 WARN stopped: schedule-worker (terminated by SIGTERM)
+2024-05-18 23:20:29,060 WARN stopped: queue-worker (terminated by SIGTERM)
+2024-05-18 23:22:28,839 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-18 23:22:28,839 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-18 23:22:28,843 INFO supervisord started with pid 34
+2024-05-18 23:22:29,845 INFO spawned: 'php-fpm' with pid 35
+2024-05-18 23:22:29,846 INFO spawned: 'queue-worker' with pid 36
+2024-05-18 23:22:29,848 INFO spawned: 'schedule-worker' with pid 37
+2024-05-18 23:22:30,861 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 23:22:30,861 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 23:22:30,862 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 23:25:52,807 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-18 23:25:52,807 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-18 23:25:52,810 INFO supervisord started with pid 34
+2024-05-18 23:25:53,812 INFO spawned: 'php-fpm' with pid 35
+2024-05-18 23:25:53,814 INFO spawned: 'queue-worker' with pid 36
+2024-05-18 23:25:53,817 INFO spawned: 'schedule-worker' with pid 37
+2024-05-18 23:25:54,830 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 23:25:54,830 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-18 23:25:54,831 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 10:11:00,542 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-19 10:11:00,542 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-19 10:11:00,545 INFO supervisord started with pid 34
+2024-05-19 10:11:01,548 INFO spawned: 'php-fpm' with pid 35
+2024-05-19 10:11:01,550 INFO spawned: 'queue-worker' with pid 36
+2024-05-19 10:11:01,552 INFO spawned: 'schedule-worker' with pid 37
+2024-05-19 10:11:02,573 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 10:11:02,574 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 10:11:02,574 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 11:19:56,628 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-19 11:19:56,628 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-19 11:19:56,631 INFO supervisord started with pid 34
+2024-05-19 11:19:57,633 INFO spawned: 'php-fpm' with pid 35
+2024-05-19 11:19:57,635 INFO spawned: 'queue-worker' with pid 36
+2024-05-19 11:19:57,637 INFO spawned: 'schedule-worker' with pid 37
+2024-05-19 11:19:58,650 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 11:19:58,650 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 11:19:58,650 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 12:45:10,743 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-19 12:45:10,745 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-19 12:45:10,748 INFO supervisord started with pid 34
+2024-05-19 12:45:11,750 INFO spawned: 'php-fpm' with pid 35
+2024-05-19 12:45:11,753 INFO spawned: 'queue-worker' with pid 36
+2024-05-19 12:45:11,755 INFO spawned: 'schedule-worker' with pid 37
+2024-05-19 12:45:12,767 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 12:45:12,767 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 12:45:12,767 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 12:46:55,577 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-19 12:46:55,578 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-19 12:46:55,581 INFO supervisord started with pid 34
+2024-05-19 12:46:56,584 INFO spawned: 'php-fpm' with pid 35
+2024-05-19 12:46:56,586 INFO spawned: 'queue-worker' with pid 36
+2024-05-19 12:46:56,587 INFO spawned: 'schedule-worker' with pid 37
+2024-05-19 12:46:57,605 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 12:46:57,605 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 12:46:57,605 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 13:17:02,554 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-19 13:17:02,555 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-19 13:17:02,558 INFO supervisord started with pid 34
+2024-05-19 13:17:03,560 INFO spawned: 'php-fpm' with pid 35
+2024-05-19 13:17:03,562 INFO spawned: 'queue-worker' with pid 36
+2024-05-19 13:17:03,564 INFO spawned: 'schedule-worker' with pid 37
+2024-05-19 13:17:04,575 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 13:17:04,575 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-19 13:17:04,576 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-29 19:16:10,805 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-29 19:16:10,805 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-05-29 19:16:10,809 INFO supervisord started with pid 42
+2024-05-29 19:16:11,811 INFO spawned: 'php-fpm' with pid 43
+2024-05-29 19:16:11,813 INFO spawned: 'queue-worker' with pid 44
+2024-05-29 19:16:11,815 INFO spawned: 'schedule-worker' with pid 45
+2024-05-29 19:16:12,854 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-29 19:16:12,855 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-29 19:16:12,855 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
