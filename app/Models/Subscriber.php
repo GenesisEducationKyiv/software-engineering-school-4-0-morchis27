@@ -9,10 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * @property string id
- * @property string email_verified_at
- * @property string email
- * @
+ * @property string $id
+ * @property string $email_verified_at
+ * @property string $email
  */
 class Subscriber extends Model
 {
