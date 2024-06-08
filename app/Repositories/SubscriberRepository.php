@@ -21,7 +21,7 @@ class SubscriberRepository
         return $this->subscriber->all();
     }
 
-    public function findById(int $id): Subscriber
+    public function findById(int $id): Subscriber|null
     {
         return $this->subscriber->find($id);
     }
