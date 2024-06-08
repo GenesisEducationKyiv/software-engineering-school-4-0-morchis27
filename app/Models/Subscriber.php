@@ -21,6 +21,10 @@ class Subscriber extends Model
         'email',
     ];
 
+
+    /**
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
         return [

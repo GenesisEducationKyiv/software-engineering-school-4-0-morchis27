@@ -19,6 +19,10 @@ class DailyExchangeRateNotification extends Notification implements ShouldQueue
         $this->exchangeRate = $exchangeRate;
     }
 
+    /**
+     * @param object $notifiable
+     * @return string[]
+     */
     public function via(object $notifiable): array
     {
         return ['mail'];
@@ -32,6 +36,10 @@ class DailyExchangeRateNotification extends Notification implements ShouldQueue
             ->line('Thank you for subscribing!');
     }
 
+    /**
+     * @param object $notifiable
+     * @return array<string, mixed>
+     */
     public function toArray(object $notifiable): array
     {
         return [

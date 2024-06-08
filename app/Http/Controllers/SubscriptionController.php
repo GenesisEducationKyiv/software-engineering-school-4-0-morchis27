@@ -36,18 +36,16 @@ class SubscriptionController extends Controller
         return $this->successResponse(null, 200);
     }
 
-    public function verify($id, Request $request): View
+    public function verify(Subscriber $subscriber, Request $request): View
     {
         if (!$request->hasValidSignature()) {
             return view('auth/email-error-verified');
         }
-        /** @var Subscriber $user */
-        $user = Subscriber::findOrFail($id);
-        if ($user->hasVerifiedEmail()) {
+        if ($subscriber->hasVerifiedEmail()) {
             return view('auth/email-already-verified');
         }
 
-        $user->markEmailAsVerified();
+        $subscriber->markEmailAsVerified();
 
         return view('auth/email-verified');
     }

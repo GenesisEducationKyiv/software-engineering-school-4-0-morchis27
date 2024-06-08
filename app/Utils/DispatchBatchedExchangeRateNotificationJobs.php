@@ -23,7 +23,7 @@ class DispatchBatchedExchangeRateNotificationJobs
             Subscriber::query()
                 ->whereNotNull('email_verified_at')
                 ->chunk(self::BATCH_SIZE, function ($subscribers) use ($currencyExchangeRate) {
-                    /** @var Collection $subscribers */
+                    /** @var Collection<int, Subscriber> $subscribers */
                     dispatch(new SendDailyExchangeRateBatchNotifications($subscribers->all(), $currencyExchangeRate));
                 });
         } catch (\Exception $e) {

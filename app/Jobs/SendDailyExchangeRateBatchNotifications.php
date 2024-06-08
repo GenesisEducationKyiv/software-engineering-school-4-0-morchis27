@@ -19,6 +19,10 @@ class SendDailyExchangeRateBatchNotifications implements ShouldQueue
 
     private float $exchangeRate;
 
+    /**
+     * @param Subscriber[] $subscribers
+     * @param float $exchangeRate
+     */
     public function __construct(array $subscribers, float $exchangeRate)
     {
         $this->subscribers = $subscribers;

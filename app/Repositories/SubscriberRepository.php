@@ -13,6 +13,9 @@ class SubscriberRepository
     {
     }
 
+    /**
+     * @return Collection<int, Subscriber>|array<Subscriber>
+     */
     public function all(): Collection|array
     {
         return $this->subscriber->all();
