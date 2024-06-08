@@ -44,10 +44,14 @@ class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepo
 
         $responseBodyArray = $this->getExchangeResponse($url)->json();
 
+        if (!is_array($responseBodyArray)) {
+            throw new MalformedApiResponseException('Couldn\'t convert response to an array.');
+        }
         if (!isset($responseBodyArray['rates'])) {
             throw new MalformedApiResponseException('Rates key not found in response body.');
         }
 
+        /** @var array<string, float> $rate */
         $rate = $responseBodyArray['rates'];
 
         return $rate[$currencyTo->value];

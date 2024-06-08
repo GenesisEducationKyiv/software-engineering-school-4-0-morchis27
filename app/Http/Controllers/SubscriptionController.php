@@ -25,11 +25,7 @@ class SubscriptionController extends Controller
      */
     public function subscribe(StoreSubscriberRequest $request): JsonResponse
     {
-        $email = $request->get('email');
-        $subscriber = Subscriber::where('email', $email)->first();
-        if($subscriber) {
-            throw new AlreadyExistsException();
-        }
+        $email = $request->string('email')->toString();
 
         $this->subscriptionService->subscribe($email);
 

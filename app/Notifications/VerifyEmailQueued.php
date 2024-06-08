@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Exception;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,6 +19,9 @@ class VerifyEmailQueued extends VerifyEmail implements ShouldQueue
     private const SECOND_LINE_STRING = 'If you did not subscribe for this exchange rate newsletter then no further action is required.';
 
 
+    /**
+     * @throws Exception
+     */
     protected function buildMailMessage($url): MailMessage
     {
         $subject = Lang::get(self::SUBJECT_STRING);
@@ -26,10 +30,26 @@ class VerifyEmailQueued extends VerifyEmail implements ShouldQueue
         $secondLine = Lang::get(self::SECOND_LINE_STRING);
 
         return (new MailMessage)
-            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
+            ->from(
+                $this->getStringValueFromEnvVariable('MAIL_FROM_ADDRESS'),
+                $this->getStringValueFromEnvVariable('MAIL_FROM_NAME')
+            )
             ->subject(is_array($subject) ? self::SUBJECT_STRING : $subject)
             ->line(is_array($firstLine) ? self::FIRST_LINE_STRING : $firstLine)
             ->action(is_array($action) ? self::ACTION_STRING : $action, $url)
             ->line(is_array($secondLine) ? self::SECOND_LINE_STRING : $secondLine);
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function getStringValueFromEnvVariable(string $envVariableKey): string
+    {
+        $envVariable = env($envVariableKey);
+        if (!is_string($envVariable)) {
+            throw new Exception("Couldn't cast env value of $envVariableKey to string");
+        }
+
+        return $envVariable;
     }
 }
