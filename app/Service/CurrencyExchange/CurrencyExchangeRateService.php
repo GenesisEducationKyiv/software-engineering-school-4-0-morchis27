@@ -10,8 +10,7 @@ class CurrencyExchangeRateService implements CurrencyExchangeRateInterface
 {
     public function __construct(
         private CurrencyExchangeRateRepositoryInterface $repository,
-    )
-    {
+    ) {
     }
 
     public function getCurrentRate(Currencies $currencyFrom, Currencies $currencyTo): float

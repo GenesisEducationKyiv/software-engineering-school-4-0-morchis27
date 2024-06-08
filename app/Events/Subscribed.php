@@ -8,11 +8,11 @@ use Illuminate\Queue\SerializesModels;
 
 class Subscribed
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public function __construct(
         public Subscriber $subscriber,
-    )
-    {
+    ) {
     }
 }

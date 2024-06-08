@@ -18,7 +18,6 @@ class SubscriptionService implements SubscriptionInterface
             $subscriber = Subscriber::create([
                 'email' => $email
             ]);
-
         } catch (Exception $e) {
             throw new Exception();
         }

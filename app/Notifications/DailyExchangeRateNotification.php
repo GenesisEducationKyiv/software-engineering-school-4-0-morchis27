@@ -14,7 +14,7 @@ class DailyExchangeRateNotification extends Notification implements ShouldQueue
 
     private float $exchangeRate;
 
-    public function  __construct(float $exchangeRate)
+    public function __construct(float $exchangeRate)
     {
         $this->exchangeRate = $exchangeRate;
     }
@@ -30,7 +30,7 @@ class DailyExchangeRateNotification extends Notification implements ShouldQueue
 
     public function toMail(Subscriber $notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->greeting('Hello, ' . $notifiable->email)
             ->line("This is the exchange rate for USD to UAH {$this->exchangeRate}.")
             ->line('Thank you for subscribing!');

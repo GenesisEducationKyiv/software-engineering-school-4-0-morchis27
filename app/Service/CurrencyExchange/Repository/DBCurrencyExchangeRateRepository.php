@@ -3,6 +3,7 @@
 namespace App\Service\CurrencyExchange\Repository;
 
 use App\Enum\Currencies;
+
 //THIS CLASS IS AN EXAMPLE OF WHY WE USED AN INTERFACE IN THE FIRST PLACE
 class DBCurrencyExchangeRateRepository implements CurrencyExchangeRateRepositoryInterface
 {

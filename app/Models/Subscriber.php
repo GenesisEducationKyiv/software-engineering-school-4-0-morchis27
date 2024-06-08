@@ -15,7 +15,10 @@ use Illuminate\Notifications\Notifiable;
  */
 class Subscriber extends Model
 {
-    use HasFactory, Notifiable, HasUuids, MustVerifyEmail;
+    use HasFactory;
+    use Notifiable;
+    use HasUuids;
+    use MustVerifyEmail;
 
     protected $fillable = [
         'email',

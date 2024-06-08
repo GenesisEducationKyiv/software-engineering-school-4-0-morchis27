@@ -10,8 +10,7 @@ class CurrencyExchangeRateController extends Controller
 {
     public function __construct(
         private CurrencyExchangeRateInterface $currencyExchangeRateService
-    )
-    {
+    ) {
     }
 
     public function getExchangeRate(): JsonResponse

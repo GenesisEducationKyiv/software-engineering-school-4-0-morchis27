@@ -12,7 +12,10 @@ use Illuminate\Queue\SerializesModels;
 
 class SendDailyExchangeRateBatchNotifications implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /** @var Subscriber[] $subscribers */
     protected array $subscribers;

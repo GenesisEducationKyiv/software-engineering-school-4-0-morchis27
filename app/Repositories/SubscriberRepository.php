@@ -9,8 +9,7 @@ class SubscriberRepository
 {
     public function __construct(
         private Subscriber $subscriber
-    )
-    {
+    ) {
     }
 
     /**
