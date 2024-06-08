@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Execute PHPSTAN
+      - name: Execute PHPSTAN checks
         run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 128M
 
   phpcs-checks:
@@ -36,5 +36,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Execute PHPSTAN
-        run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 128M
+      - name: Execute PHPCS checks
+        run: ./vendor/bin/phpcs --standard=PSR12 app
