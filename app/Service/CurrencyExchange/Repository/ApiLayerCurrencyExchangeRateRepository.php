@@ -2,7 +2,7 @@
 
 namespace App\Service\CurrencyExchange\Repository;
 
-use App\Enum\Currencies;
+use App\Enum\Currency;
 use App\Exceptions\MalformedApiResponseException;
 use Exception;
 use Illuminate\Http\Client\ConnectionException;
@@ -24,7 +24,7 @@ class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepo
             ->get($url);
     }
 
-    private function getExchangeRateApiUrl(Currencies $currencyFrom, Currencies $currencyTo): string
+    private function getExchangeRateApiUrl(Currency $currencyFrom, Currency $currencyTo): string
     {
         $baseUrl = config('app.exchangeServiceApiHost') . '/';
         $urn = 'exchangerates_data' . '/' . 'latest';
@@ -38,7 +38,7 @@ class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepo
      * @throws ConnectionException
      * @throws MalformedApiResponseException
      */
-    public function getCurrentRate(Currencies $currencyFrom, Currencies $currencyTo): float
+    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): float
     {
         $url = $this->getExchangeRateApiUrl($currencyFrom, $currencyTo);
 

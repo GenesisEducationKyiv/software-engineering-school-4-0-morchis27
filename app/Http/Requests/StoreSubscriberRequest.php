@@ -13,12 +13,12 @@ class StoreSubscriberRequest extends FormRequest
 
 
     /**
-     * @return string[]
+     * @return array<string, array<int, string>>
      */
     public function rules(): array
     {
         return [
-            'email' => 'required|email|unique:subscribers',
+            'email' => ['required', 'email', 'unique:subscribers'],
         ];
     }
 }

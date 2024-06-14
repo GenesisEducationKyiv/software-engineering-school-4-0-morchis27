@@ -2,14 +2,13 @@
 
 namespace App\Service\CurrencyExchange\Repository;
 
-use App\Enum\Currencies;
+use App\Enum\Currency;
+use Nette\NotImplementedException;
 
-//THIS CLASS IS AN EXAMPLE OF WHY WE USED AN INTERFACE IN THE FIRST PLACE
 class DBCurrencyExchangeRateRepository implements CurrencyExchangeRateRepositoryInterface
 {
-    public function getCurrentRate(Currencies $currencyFrom, Currencies $currencyTo): float
+    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): float
     {
-        //here would go implementation of a different source(DB) from which we could've grabbed our data
-        return 0;
+        throw new NotImplementedException('use of not implemented DBCurrencyExchangeRateRepository::getCurrentRate()');
     }
 }

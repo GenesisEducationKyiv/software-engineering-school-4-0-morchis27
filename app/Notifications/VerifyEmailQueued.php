@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Enum\ConfigSpaceName;
+use App\Utils\Utilities;
 use Exception;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Bus\Queueable;
@@ -16,9 +18,8 @@ class VerifyEmailQueued extends VerifyEmail implements ShouldQueue
     private const SUBJECT_STRING = 'Verify Email Address';
     private const FIRST_LINE_STRING = 'Please click the button below to verify your email address.';
     private const ACTION_STRING = 'Verify Email Address';
-    private const SECOND_LINE_STRING = 'If you did not subscribe for this exchange rate newsletter
-    then no further action is required.';
-
+    // phpcs:ignoreFile
+    private const SECOND_LINE_STRING = 'If you did not subscribe for this exchange rate newsletter then no further action is required.';
 
     /**
      * @throws Exception
@@ -32,25 +33,18 @@ class VerifyEmailQueued extends VerifyEmail implements ShouldQueue
 
         return (new MailMessage())
             ->from(
-                $this->getStringValueFromEnvVariable('MAIL_FROM_ADDRESS'),
-                $this->getStringValueFromEnvVariable('MAIL_FROM_NAME')
+                Utilities::getStringValueFromEnvVariable(
+                    ConfigSpaceName::APP->value,
+                    'MAIL_FROM_ADDRESS'
+                ),
+                Utilities::getStringValueFromEnvVariable(
+                    ConfigSpaceName::APP->value,
+                    'MAIL_FROM_NAME'
+                ),
             )
             ->subject(is_array($subject) ? self::SUBJECT_STRING : $subject)
             ->line(is_array($firstLine) ? self::FIRST_LINE_STRING : $firstLine)
             ->action(is_array($action) ? self::ACTION_STRING : $action, $url)
             ->line(is_array($secondLine) ? self::SECOND_LINE_STRING : $secondLine);
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function getStringValueFromEnvVariable(string $envVariableKey): string
-    {
-        $envVariable = env($envVariableKey);
-        if (!is_string($envVariable)) {
-            throw new Exception("Couldn't cast env value of $envVariableKey to string");
-        }
-
-        return $envVariable;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enum\Currencies;
+use App\Enum\Currency;
 use App\Service\CurrencyExchange\CurrencyExchangeRateInterface;
 use Illuminate\Http\JsonResponse;
 
@@ -16,7 +16,7 @@ class CurrencyExchangeRateController extends Controller
     public function getExchangeRate(): JsonResponse
     {
         return $this->successResponse(
-            $this->currencyExchangeRateService->getCurrentRate(Currencies::USD, Currencies::UAH)
+            $this->currencyExchangeRateService->getCurrentRate(Currency::USD, Currency::UAH)
         );
     }
 }

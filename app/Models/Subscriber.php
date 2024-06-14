@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * @property string $id
- * @property string $email_verified_at
+ * @property Carbon $email_verified_at
  * @property string $email
  */
 class Subscriber extends Model

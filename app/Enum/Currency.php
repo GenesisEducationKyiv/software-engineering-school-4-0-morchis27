@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-enum Currencies: string
+enum Currency: string
 {
     case USD = 'USD';
     case UAH = 'UAH';

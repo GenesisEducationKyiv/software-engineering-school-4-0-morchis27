@@ -20,10 +20,10 @@ class DailyExchangeRateNotification extends Notification implements ShouldQueue
     }
 
     /**
-     * @param object $notifiable
+     * @param Subscriber $notifiable
      * @return string[]
      */
-    public function via(object $notifiable): array
+    public function via(Subscriber $notifiable): array
     {
         return ['mail'];
     }
@@ -31,16 +31,16 @@ class DailyExchangeRateNotification extends Notification implements ShouldQueue
     public function toMail(Subscriber $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->greeting('Hello, ' . $notifiable->email)
+            ->greeting("Hello, $notifiable->email")
             ->line("This is the exchange rate for USD to UAH {$this->exchangeRate}.")
             ->line('Thank you for subscribing!');
     }
 
     /**
-     * @param object $notifiable
-     * @return array<string, mixed>
+     * @param Subscriber $notifiable
+     * @return array<string, Subscriber>
      */
-    public function toArray(object $notifiable): array
+    public function toArray(Subscriber $notifiable): array
     {
         return [
             //

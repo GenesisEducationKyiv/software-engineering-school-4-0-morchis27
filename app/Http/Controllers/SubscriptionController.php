@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateSubscriberDTO;
 use App\Exceptions\AlreadyExistsException;
 use App\Http\Requests\StoreSubscriberRequest;
 use App\Models\Subscriber;
@@ -24,9 +25,10 @@ class SubscriptionController extends Controller
      */
     public function subscribe(StoreSubscriberRequest $request): JsonResponse
     {
-        $email = $request->string('email')->toString();
+        $createSubscriberDto = new CreateSubscriberDTO();
+        $createSubscriberDto->fillByRequest($request);
 
-        $this->subscriptionService->subscribe($email);
+        $this->subscriptionService->subscribe($createSubscriberDto);
 
         return $this->successResponse(null, 200);
     }
