@@ -21,7 +21,7 @@ class DailyExchangeRateNotification extends Notification implements ShouldQueue
 
     /**
      * @param Subscriber $notifiable
-     * @return string[]
+     * @return array<int, string>
      */
     public function via(Subscriber $notifiable): array
     {

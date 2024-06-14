@@ -17,13 +17,13 @@ class SendDailyExchangeRateBatchNotifications implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /** @var Subscriber[] $subscribers */
+    /** @var array<int, Subscriber> $subscribers */
     protected array $subscribers;
 
     private float $exchangeRate;
 
     /**
-     * @param Subscriber[] $subscribers
+     * @param array<int, Subscriber> $subscribers
      * @param float $exchangeRate
      */
     public function __construct(array $subscribers, float $exchangeRate)
