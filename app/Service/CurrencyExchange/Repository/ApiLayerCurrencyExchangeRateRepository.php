@@ -2,6 +2,7 @@
 
 namespace App\Service\CurrencyExchange\Repository;
 
+use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
 use App\Enum\Currency;
 use App\Exceptions\MalformedApiResponseException;
 use Exception;
@@ -38,7 +39,7 @@ class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepo
      * @throws ConnectionException
      * @throws MalformedApiResponseException
      */
-    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): float
+    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): ExchangeRateDTO
     {
         $url = $this->getExchangeRateApiUrl($currencyFrom, $currencyTo);
 
@@ -51,9 +52,6 @@ class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepo
             throw new MalformedApiResponseException('Rates key not found in response body.');
         }
 
-        /** @var array<string, float> $rate */
-        $rate = $responseBodyArray['rates'];
-
-        return $rate[$currencyTo->value];
+        return new ExchangeRateDTO($responseBodyArray['rates'][$currencyTo->value]);
     }
 }

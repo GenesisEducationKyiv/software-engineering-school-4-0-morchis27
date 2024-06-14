@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use _PHPStan_27631a2e0\Nette\Schema\ValidationException;
+use App\Exceptions\AlreadyExistsException;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSubscriberRequest extends FormRequest
@@ -11,7 +14,6 @@ class StoreSubscriberRequest extends FormRequest
         return true;
     }
 
-
     /**
      * @return array<string, array<int, string>>
      */
@@ -20,5 +22,18 @@ class StoreSubscriberRequest extends FormRequest
         return [
             'email' => ['required', 'email', 'unique:subscribers'],
         ];
+    }
+
+    /**
+     * @throws AlreadyExistsException
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        if(in_array('Unique', array_keys($validator->failed()['email'])))
+        {
+            throw new AlreadyExistsException();
+        }
+
+        parent::failedValidation($validator);
     }
 }

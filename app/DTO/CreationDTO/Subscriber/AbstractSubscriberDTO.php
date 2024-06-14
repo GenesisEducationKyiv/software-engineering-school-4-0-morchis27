@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO;
+namespace App\DTO\CreationDTO\Subscriber;
 
 abstract class AbstractSubscriberDTO
 {

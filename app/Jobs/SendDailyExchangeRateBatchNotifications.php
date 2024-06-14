@@ -2,8 +2,9 @@
 
 namespace App\Jobs;
 
+use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
 use App\Models\Subscriber;
-use App\Notifications\DailyExchangeRateNotification;
+use App\Service\DailyExchangeRateNewsLetterNotificationInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,25 +18,24 @@ class SendDailyExchangeRateBatchNotifications implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /** @var array<int, Subscriber> $subscribers */
-    protected array $subscribers;
-
-    private float $exchangeRate;
+    private DailyExchangeRateNewsLetterNotificationInterface $subscriptionService;
 
     /**
      * @param array<int, Subscriber> $subscribers
-     * @param float $exchangeRate
+     * @param ExchangeRateDTO $exchangeRate
      */
-    public function __construct(array $subscribers, float $exchangeRate)
-    {
-        $this->subscribers = $subscribers;
-        $this->exchangeRate = $exchangeRate;
+    public function __construct(
+        protected array $subscribers,
+        private ExchangeRateDTO $exchangeRate,
+    ) {
+        $this->subscriptionService =
+            app(DailyExchangeRateNewsLetterNotificationInterface::class);
     }
 
     public function handle(): void
     {
         foreach ($this->subscribers as $subscriber) {
-            $subscriber->notify(new DailyExchangeRateNotification($this->exchangeRate));
+            $this->subscriptionService->sendDailyExchangeRateNewsLetterNotification($subscriber, $this->exchangeRate);
         }
     }
 }
