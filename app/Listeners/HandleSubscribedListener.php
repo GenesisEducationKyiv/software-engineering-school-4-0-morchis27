@@ -13,7 +13,7 @@ class HandleSubscribedListener implements ShouldQueue
 
     public function __construct()
     {
-        $this->shouldBeVerified = env('SHOULD_BE_VERIFIED', false);
+        $this->shouldBeVerified = (bool) config('app.shouldBeVerified');
     }
 
     /**

@@ -2,11 +2,9 @@
 
 namespace App\Service\CurrencyExchange;
 
-use App\Enum\Currencies;
+use App\Enum\Currency;
 
 interface CurrencyExchangeRateInterface
 {
-    public function getCurrentRate(Currencies $currencyFrom, Currencies $currencyTo): float;
-
-//    public function getRatesByPeriod(Currencies $currencyFrom, Currencies $currencyTo, Carbon $dateFrom, Carbon $dateTo): array;
+    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): float;
 }

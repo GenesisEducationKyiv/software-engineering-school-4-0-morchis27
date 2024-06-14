@@ -125,5 +125,10 @@ return [
 
     'exchangeServiceApiKey' => env('EXCHANGE_SERVICE_API_KEY'),
     'exchangeServiceApiHost' => env('EXCHANGE_SERVICE_API_HOST'),
+    'shouldBeVerified' => env('SHOULD_BE_VERIFIED', false),
+    'mailFromAddress' => env('MAIL_FROM_ADDRESS', 'dailyDoseOfCurrencyExchange@gmail.com'),
+    'mailFromName' => env('MAIL_FROM_NAME', 'noreply@sds4app.com'),
+    'dailyCurrencyExchangeRateNotificationJobBatchSIze' =>
+        env('DAILY_CURRENCY_EXCHANGE_RATE_NOTIFICATION_JOB_BATCH_SIZE', 500),
 
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,19 +10,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * @property string id
- * @property string email_verified_at
- * @property string email
- * @
+ * @property string $id
+ * @property Carbon $email_verified_at
+ * @property string $email
  */
 class Subscriber extends Model
 {
-    use HasFactory, Notifiable, HasUuids, MustVerifyEmail;
+    use HasFactory;
+    use Notifiable;
+    use HasUuids;
+    use MustVerifyEmail;
 
     protected $fillable = [
         'email',
     ];
 
+
+    /**
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
         return [

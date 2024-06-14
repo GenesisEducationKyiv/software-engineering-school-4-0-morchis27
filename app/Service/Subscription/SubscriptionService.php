@@ -2,26 +2,25 @@
 
 namespace App\Service\Subscription;
 
+use App\DTO\CreateSubscriberDTO;
 use App\Events\Subscribed;
 use App\Models\Subscriber;
-use App\Service\CurrencyExchange\CurrencyExchangeRateInterface;
+use App\Repositories\Subscriber\SubscriberRepository;
 use Exception;
 
 class SubscriptionService implements SubscriptionInterface
 {
+    public function __construct(
+        private SubscriberRepository $subscriberRepository,
+    ) {
+    }
+
     /**
      * @throws Exception
      */
-    public function subscribe(string $email): void
+    public function subscribe(CreateSubscriberDTO $subscriberDTO): void
     {
-        try {
-            $subscriber = Subscriber::create([
-                'email' => $email
-            ]);
-
-        } catch (Exception $e) {
-            throw new Exception();
-        }
+        $subscriber = $this->subscriberRepository->create($subscriberDTO);
 
         event(new Subscribed($subscriber));
     }

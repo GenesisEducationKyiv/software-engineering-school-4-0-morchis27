@@ -14,6 +14,7 @@ trait ApiTrait
             [
                 'Content-Type' => 'application/json',
             ],
-            JSON_NUMERIC_CHECK);
+            JSON_NUMERIC_CHECK
+        );
     }
 }
