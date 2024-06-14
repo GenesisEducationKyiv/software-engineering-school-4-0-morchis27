@@ -9,7 +9,7 @@ parameters:
         - app/
 
     parallel:
-    	maximumNumberOfProcesses: 10
+    	maximumNumberOfProcesses: 2
     	processTimeout: 300.0
-    	jobSize: 20
+    	jobSize: 10
     	minimumNumberOfJobsPerProcess: 2
