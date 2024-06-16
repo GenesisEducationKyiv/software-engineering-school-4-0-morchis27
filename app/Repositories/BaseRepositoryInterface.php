@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\DTO\CreationDTO\Subscriber\AbstractSubscriberDTO;
 use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
 use App\DTO\CreationDTO\Subscriber\UpdateSubscriberDTO;
 use App\Models\Subscriber;

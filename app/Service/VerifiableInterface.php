@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\DTO\VerificationDTO\BasicVerificationDTOInterface;
 use App\Models\NotifiableInterface;
-use App\Models\Subscriber;
 
 interface VerifiableInterface
 {

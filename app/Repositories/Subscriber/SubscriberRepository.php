@@ -8,6 +8,7 @@ use App\Exceptions\ModelNotExistsException;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\NotVerifiedException;
+use App\Models\NotifiableInterface;
 use App\Models\Subscriber;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -108,9 +109,10 @@ class SubscriberRepository implements SubscriberRepositoryInterface
      * @return void
      * @throws NotVerifiedException
      */
-    public function verify(Subscriber $subscriber): void
+    public function verify(NotifiableInterface $subscriber): void
     {
         try {
+            // @phpstan-ignore-next-line
             $subscriber->markEmailAsVerified();
         } catch (Exception) {
             throw new NotVerifiedException();
@@ -120,8 +122,9 @@ class SubscriberRepository implements SubscriberRepositoryInterface
     /**
      * @return bool
      */
-    public function isVerified(Subscriber $subscriber): bool
+    public function isVerified(NotifiableInterface $subscriber): bool
     {
+        // @phpstan-ignore-next-line
         return $subscriber->hasVerifiedEmail();
     }
 }
