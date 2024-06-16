@@ -31,7 +31,7 @@ class SubscribeEmailTest extends TestCase
         ]);
         $subscriber = Subscriber::where('email', $email)->first();
 
-        if (!env('SHOULD_BE_VERIFIED')) {
+        if (!config('app.shouldBeVerified')) {
             $this->assertNotNull($subscriber);
         }
     }
