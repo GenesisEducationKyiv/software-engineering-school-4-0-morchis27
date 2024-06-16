@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\NotifiableInterface;
 use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -20,27 +21,31 @@ class DailyExchangeRateNotification extends Notification implements ShouldQueue
     }
 
     /**
-     * @param Subscriber $notifiable
+     * @param NotifiableInterface $notifiable
      * @return array<int, string>
      */
-    public function via(Subscriber $notifiable): array
+    public function via(NotifiableInterface $notifiable): array
     {
         return ['mail'];
     }
 
-    public function toMail(Subscriber $notifiable): MailMessage
+    /**
+     * @param NotifiableInterface $notifiable
+     * @return MailMessage
+     */
+    public function toMail(NotifiableInterface $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->greeting("Hello, $notifiable->email")
+            ->greeting("Hello, {$notifiable->getNotificationRefer()}")
             ->line("This is the exchange rate for USD to UAH {$this->exchangeRate}.")
             ->line('Thank you for subscribing!');
     }
 
     /**
-     * @param Subscriber $notifiable
+     * @param NotifiableInterface $notifiable
      * @return array<string, Subscriber>
      */
-    public function toArray(Subscriber $notifiable): array
+    public function toArray(NotifiableInterface $notifiable): array
     {
         return [
             //

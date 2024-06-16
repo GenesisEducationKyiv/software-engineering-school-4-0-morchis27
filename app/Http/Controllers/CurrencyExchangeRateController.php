@@ -16,7 +16,9 @@ class CurrencyExchangeRateController extends Controller
     public function getExchangeRate(): JsonResponse
     {
         return $this->successResponse(
-            $this->currencyExchangeRateService->getCurrentRate(Currency::USD, Currency::UAH)
+            $this->currencyExchangeRateService
+                ->getCurrentRate(Currency::USD, Currency::UAH)
+                ->getExchangeRate()
         );
     }
 }

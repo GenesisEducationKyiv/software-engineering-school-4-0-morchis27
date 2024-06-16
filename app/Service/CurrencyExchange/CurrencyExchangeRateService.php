@@ -2,9 +2,9 @@
 
 namespace App\Service\CurrencyExchange;
 
+use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
 use App\Enum\Currency;
 use App\Service\CurrencyExchange\Repository\CurrencyExchangeRateRepositoryInterface;
-use App\Service\CurrencyExchange\Repository\DBCurrencyExchangeRateRepository;
 
 class CurrencyExchangeRateService implements CurrencyExchangeRateInterface
 {
@@ -13,7 +13,7 @@ class CurrencyExchangeRateService implements CurrencyExchangeRateInterface
     ) {
     }
 
-    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): float
+    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): ExchangeRateDTO
     {
         $rate = $this->repository->getCurrentRate($currencyFrom, $currencyTo);
 

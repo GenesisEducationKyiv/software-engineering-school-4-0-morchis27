@@ -3,33 +3,29 @@
 namespace App\Listeners;
 
 use App\Events\Subscribed;
-use App\Notifications\VerifyEmailQueued;
-use Carbon\Carbon;
+use App\Service\Subscription\SubscriptionServiceInterface;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class HandleSubscribedListener implements ShouldQueue
 {
-    private bool $shouldBeVerified;
-
-    public function __construct()
-    {
-        $this->shouldBeVerified = (bool) config('app.shouldBeVerified');
+    public function __construct(
+        private bool $shouldBeVerified,
+        private SubscriptionServiceInterface $subscriptionService
+    ) {
     }
 
     /**
-     * Handle the event.
+     * @param Subscribed $event
+     * @return void
      */
     public function handle(Subscribed $event): void
     {
-        $subscriber = $event->subscriber;
         if ($this->shouldBeVerified) {
-            $subscriber->notify(new VerifyEmailQueued());
+            $this->subscriptionService->handleVerificationNotification($event->subscriber);
         }
 
         if (!$this->shouldBeVerified) {
-            $subscriber->forceFill([
-                'email_verified_at' => Carbon::now()->getTimestamp(),
-            ])->save();
+            $this->subscriptionService->verify($event->subscriber);
         }
     }
 }

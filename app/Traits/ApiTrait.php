@@ -6,7 +6,12 @@ use Illuminate\Http\JsonResponse;
 
 trait ApiTrait
 {
-    public function successResponse(float|null $value, int $statusCode = 200): JsonResponse
+    /**
+     * @param float|array<string, mixed>|null $value
+     * @param int $statusCode
+     * @return JsonResponse
+     */
+    public function successResponse(float|array|null $value, int $statusCode = 200): JsonResponse
     {
         return response()->json(
             $value,

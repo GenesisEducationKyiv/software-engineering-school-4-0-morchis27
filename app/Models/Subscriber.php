@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
  * @property Carbon $email_verified_at
  * @property string $email
  */
-class Subscriber extends Model
+class Subscriber extends Model implements NotifiableInterface
 {
     use HasFactory;
     use Notifiable;
@@ -34,5 +34,13 @@ class Subscriber extends Model
         return [
             'email_verified_at' => 'datetime',
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getNotificationRefer(): string
+    {
+        return $this->email;
     }
 }

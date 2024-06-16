@@ -2,26 +2,79 @@
 
 namespace App\Service\Subscription;
 
-use App\DTO\CreateSubscriberDTO;
+use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
+use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
+use App\DTO\VerificationDTO\Subscriber\SubscriberVerificationDTO;
+use App\Enum\EmailVerificationCode;
 use App\Events\Subscribed;
-use App\Models\Subscriber;
-use App\Repositories\Subscriber\SubscriberRepository;
-use Exception;
+use App\Exceptions\ModelNotSavedException;
+use App\Models\NotifiableInterface;
+use App\Notifications\DailyExchangeRateNotification;
+use App\Notifications\VerifyEmailQueued;
+use App\Repositories\Subscriber\SubscriberRepositoryInterface;
+use Illuminate\Http\Request;
 
-class SubscriptionService implements SubscriptionInterface
+class SubscriptionService implements SubscriptionServiceInterface
 {
     public function __construct(
-        private SubscriberRepository $subscriberRepository,
+        private SubscriberRepositoryInterface $subscriberRepository,
     ) {
     }
 
     /**
-     * @throws Exception
+     * @param CreateSubscriberDTO $subscriberDTO
+     * @return void
+     * @throws ModelNotSavedException
      */
     public function subscribe(CreateSubscriberDTO $subscriberDTO): void
     {
         $subscriber = $this->subscriberRepository->create($subscriberDTO);
 
         event(new Subscribed($subscriber));
+    }
+
+    /**
+     * @param NotifiableInterface $subscriber
+     * @return SubscriberVerificationDTO
+     */
+    public function verify(NotifiableInterface $subscriber): SubscriberVerificationDTO
+    {
+        if ($this->subscriberRepository->isVerified($subscriber)) {
+            return new SubscriberVerificationDTO(
+                response: true,
+                responseCode: EmailVerificationCode::ALREADY_SUBSCRIBED->value
+            );
+        }
+
+        $this->subscriberRepository->verify($subscriber);
+
+        return new SubscriberVerificationDTO(
+            response: true,
+            responseCode: EmailVerificationCode::SUBSCRIBED_SUCCESS->value
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @return CreateSubscriberDTO
+     */
+    public function makeCreationDTO(Request $request): CreateSubscriberDTO
+    {
+        $createSubscriberDTO = new CreateSubscriberDTO();
+        $createSubscriberDTO->fillByRequest($request);
+
+        return $createSubscriberDTO;
+    }
+
+    public function handleVerificationNotification(NotifiableInterface $notifiable): void
+    {
+        $notifiable->notify(new VerifyEmailQueued());
+    }
+
+    public function sendDailyExchangeRateNewsLetterNotification(
+        NotifiableInterface $notifiable,
+        ExchangeRateDTO $exchangeRate
+    ): void {
+        $notifiable->notify(new DailyExchangeRateNotification($exchangeRate->getExchangeRate()));
     }
 }

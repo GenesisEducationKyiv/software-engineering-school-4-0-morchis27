@@ -2,11 +2,13 @@
 
 namespace App\Repositories\Subscriber;
 
-use App\DTO\CreateSubscriberDTO;
-use App\DTO\UpdateSubscriberDTO;
+use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
+use App\DTO\CreationDTO\Subscriber\UpdateSubscriberDTO;
 use App\Exceptions\ModelNotExistsException;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\NotFoundException;
+use App\Exceptions\NotVerifiedException;
+use App\Models\NotifiableInterface;
 use App\Models\Subscriber;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -60,16 +62,23 @@ class SubscriberRepository implements SubscriberRepositoryInterface
     }
 
     /**
-     * @throws NotFoundException
+     * @throws NotFoundException|ModelNotSavedException
      */
     public function update(UpdateSubscriberDTO $subscriberDTO): Subscriber
     {
         $subscriber = $this->findById($subscriberDTO->getId());
-        $subscriber->update([
-            'email' => $subscriberDTO->getEmail(),
-        ]);
+        try {
+            DB::beginTransaction();
+            $subscriber->update([
+                'email' => $subscriberDTO->getEmail(),
+            ]);
+            DB::commit();
 
-        return $subscriber;
+            return $subscriber;
+        } catch (Exception) {
+            DB::rollBack();
+            throw new ModelNotSavedException();
+        }
     }
 
     /**
@@ -80,11 +89,42 @@ class SubscriberRepository implements SubscriberRepositoryInterface
     {
         $subscriber = $this->findById($id);
 
-        $isDeleted = $subscriber->delete();
-        if ($isDeleted === null) {
-            throw new ModelNotExistsException();
-        }
+        try {
+            DB::beginTransaction();
+            $isDeleted = $subscriber->delete();
+            if ($isDeleted === null) {
+                throw new ModelNotExistsException();
+            }
 
-        return $isDeleted;
+            DB::commit();
+
+            return $isDeleted;
+        } catch (Exception $exception) {
+            DB::rollBack();
+            throw $exception;
+        }
+    }
+
+    /**
+     * @return void
+     * @throws NotVerifiedException
+     */
+    public function verify(NotifiableInterface $subscriber): void
+    {
+        try {
+            // @phpstan-ignore-next-line
+            $subscriber->markEmailAsVerified();
+        } catch (Exception) {
+            throw new NotVerifiedException();
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVerified(NotifiableInterface $subscriber): bool
+    {
+        // @phpstan-ignore-next-line
+        return $subscriber->hasVerifiedEmail();
     }
 }

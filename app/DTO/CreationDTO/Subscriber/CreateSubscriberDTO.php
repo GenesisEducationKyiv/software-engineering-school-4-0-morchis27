@@ -1,7 +1,8 @@
 <?php
 
-namespace App\DTO;
+namespace App\DTO\CreationDTO\Subscriber;
 
+use App\DTO\RequestFillableDTOInterface;
 use Illuminate\Http\Request;
 
 class CreateSubscriberDTO extends AbstractSubscriberDTO implements RequestFillableDTOInterface

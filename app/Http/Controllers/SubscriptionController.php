@@ -2,48 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\CreateSubscriberDTO;
-use App\Exceptions\AlreadyExistsException;
+use App\Exceptions\ModelNotSavedException;
 use App\Http\Requests\StoreSubscriberRequest;
 use App\Models\Subscriber;
-use App\Service\Subscription\SubscriptionService;
-use Exception;
-use Illuminate\Contracts\View\View;
+use App\Service\Subscription\SubscriptionServiceInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
     public function __construct(
-        private SubscriptionService $subscriptionService
+        private SubscriptionServiceInterface $subscriptionService
     ) {
     }
 
     /**
-     * @throws AlreadyExistsException
-     * @throws Exception
+     * @param StoreSubscriberRequest $request
+     * @return JsonResponse
+     * @throws ModelNotSavedException
      */
     public function subscribe(StoreSubscriberRequest $request): JsonResponse
     {
-        $createSubscriberDto = new CreateSubscriberDTO();
-        $createSubscriberDto->fillByRequest($request);
-
+        $createSubscriberDto = $this->subscriptionService->makeCreationDTO($request);
         $this->subscriptionService->subscribe($createSubscriberDto);
 
         return $this->successResponse(null, 200);
     }
 
-    public function verify(Subscriber $subscriber, Request $request): View
+    /**
+     * @return JsonResponse
+     */
+    public function verify(Subscriber $subscriber): JsonResponse
     {
-        if (!$request->hasValidSignature()) {
-            return view('auth/email-error-verified');
-        }
-        if ($subscriber->hasVerifiedEmail()) {
-            return view('auth/email-already-verified');
-        }
-
-        $subscriber->markEmailAsVerified();
-
-        return view('auth/email-verified');
+        return $this->successResponse($this->subscriptionService->verify($subscriber)->toArray());
     }
 }
