@@ -108,10 +108,10 @@ class SubscriberRepository implements SubscriberRepositoryInterface
      * @return void
      * @throws NotVerifiedException
      */
-    public function verify(): void
+    public function verify(Subscriber $subscriber): void
     {
         try {
-            $this->subscriber->markEmailAsVerified();
+            $subscriber->markEmailAsVerified();
         } catch (Exception) {
             throw new NotVerifiedException();
         }
@@ -120,8 +120,8 @@ class SubscriberRepository implements SubscriberRepositoryInterface
     /**
      * @return bool
      */
-    public function isVerified(): bool
+    public function isVerified(Subscriber $subscriber): bool
     {
-        return $this->subscriber->hasVerifiedEmail();
+        return $subscriber->hasVerifiedEmail();
     }
 }

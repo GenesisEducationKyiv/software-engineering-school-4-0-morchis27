@@ -25,7 +25,7 @@ class HandleSubscribedListener implements ShouldQueue
         }
 
         if (!$this->shouldBeVerified) {
-            $this->subscriptionService->verify();
+            $this->subscriptionService->verify($event->subscriber);
         }
     }
 }

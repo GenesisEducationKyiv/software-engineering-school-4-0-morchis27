@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Http\Requests\StoreSubscriberRequest;
+use App\Models\Subscriber;
 use App\Service\Subscription\SubscriptionServiceInterface;
 use Illuminate\Http\JsonResponse;
 
@@ -30,8 +31,8 @@ class SubscriptionController extends Controller
     /**
      * @return JsonResponse
      */
-    public function verify(): JsonResponse
+    public function verify(Subscriber $subscriber): JsonResponse
     {
-        return $this->successResponse($this->subscriptionService->verify()->toArray());
+        return $this->successResponse($this->subscriptionService->verify($subscriber)->toArray());
     }
 }

@@ -10,6 +10,7 @@ use App\Events\Subscribed;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\NotVerifiedException;
 use App\Models\NotifiableInterface;
+use App\Models\Subscriber;
 use App\Notifications\DailyExchangeRateNotification;
 use App\Notifications\VerifyEmailQueued;
 use App\Repositories\Subscriber\SubscriberRepositoryInterface;
@@ -35,19 +36,19 @@ class SubscriptionService implements SubscriptionServiceInterface
     }
 
     /**
+     * @param NotifiableInterface $subscriber
      * @return SubscriberVerificationDTO
-     * @throws NotVerifiedException
      */
-    public function verify(): SubscriberVerificationDTO
+    public function verify(NotifiableInterface $subscriber): SubscriberVerificationDTO
     {
-        if ($this->subscriberRepository->isVerified()) {
+        if ($this->subscriberRepository->isVerified($subscriber)) {
             return new SubscriberVerificationDTO(
                 response: true,
                 responseCode: EmailVerificationCode::ALREADY_SUBSCRIBED->value
             );
         }
 
-        $this->subscriberRepository->verify();
+        $this->subscriberRepository->verify($subscriber);
 
         return new SubscriberVerificationDTO(
             response: true,
