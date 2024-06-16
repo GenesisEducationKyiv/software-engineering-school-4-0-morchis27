@@ -23,4 +23,4 @@ jobs:
       - name: Execute PHPSTAN checks
         run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 128M
       - name: Execute PHPCS checks
-        run: ./vendor/bin/phpcs --standard=PSR12 app
+        run: ./vendor/bin/phpcs --standard=PSR12 app tests

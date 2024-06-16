@@ -5,9 +5,9 @@ namespace App\Service\CurrencyExchange\Repository;
 use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
 use App\Enum\Currency;
 use App\Exceptions\MalformedApiResponseException;
-use Exception;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 
 class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepositoryInterface
@@ -21,13 +21,13 @@ class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepo
     private function getExchangeResponse(string $url): Response
     {
         return Http::withOptions(['verify' => true])
-            ->withHeader('apikey', config('app.exchangeServiceApiKey'))
+            ->withHeader('apikey', Config::get('app.exchangeServiceApiKey'))
             ->get($url);
     }
 
     private function getExchangeRateApiUrl(Currency $currencyFrom, Currency $currencyTo): string
     {
-        $baseUrl = config('app.exchangeServiceApiHost') . '/';
+        $baseUrl = Config::get('app.exchangeServiceApiHost') . '/';
         $urn = 'exchangerates_data' . '/' . 'latest';
         $currencyFromParameter = '?' . self::MAIN_CURRENCY_QUERY_PARAMETER_NAME . '=' . $currencyFrom->value . '&';
         $currencyToParameter = self::EXCHANGING_CURRENCY_QUERY_PARAMETER_NAME . '=' . $currencyTo->value;
