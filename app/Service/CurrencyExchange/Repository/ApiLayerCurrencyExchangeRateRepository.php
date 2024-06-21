@@ -7,27 +7,38 @@ use App\Enum\Currency;
 use App\Exceptions\MalformedApiResponseException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\Factory as Http;
+use Illuminate\Contracts\Config\Repository as Config;
+use Psr\Log\LoggerInterface;
 
 class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepositoryInterface
 {
     private const MAIN_CURRENCY_QUERY_PARAMETER_NAME = 'base';
     private const EXCHANGING_CURRENCY_QUERY_PARAMETER_NAME = 'symbols';
 
+    public function __construct(
+        private Config $config,
+        private Http $http,
+        private LoggerInterface $logger
+    ) {
+    }
+
     /**
      * @throws ConnectionException
      */
     private function getExchangeResponse(string $url): Response
     {
-        return Http::withOptions(['verify' => true])
-            ->withHeader('apikey', Config::get('app.exchangeServiceApiKey'))
+        $response = $this->http->withOptions(['verify' => true])
+            ->withHeader('apikey', $this->config->get('app.exchangeServiceApiKey'))
             ->get($url);
+        $this->logger->info('Api Layer has a response: ', ['response' => $response->json()]);
+
+        return $response;
     }
 
     private function getExchangeRateApiUrl(Currency $currencyFrom, Currency $currencyTo): string
     {
-        $baseUrl = Config::get('app.exchangeServiceApiHost') . '/';
+        $baseUrl = $this->config->get('app.exchangeServiceApiHost') . '/';
         $urn = 'exchangerates_data' . '/' . 'latest';
         $currencyFromParameter = '?' . self::MAIN_CURRENCY_QUERY_PARAMETER_NAME . '=' . $currencyFrom->value . '&';
         $currencyToParameter = self::EXCHANGING_CURRENCY_QUERY_PARAMETER_NAME . '=' . $currencyTo->value;

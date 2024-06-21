@@ -123,8 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'exchangeServiceApiKey' => env('EXCHANGE_SERVICE_API_KEY'),
-    'exchangeServiceApiHost' => env('EXCHANGE_SERVICE_API_HOST'),
     'shouldBeVerified' => env('SHOULD_BE_VERIFIED', false),
     'mailFromAddress' => env('MAIL_FROM_ADDRESS', 'dailyDoseOfCurrencyExchange@gmail.com'),
     'mailFromName' => env('MAIL_FROM_NAME', 'noreply@sds4app.com'),

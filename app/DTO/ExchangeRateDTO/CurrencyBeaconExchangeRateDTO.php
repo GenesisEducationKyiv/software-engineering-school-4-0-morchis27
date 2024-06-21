@@ -2,16 +2,18 @@
 
 namespace App\DTO\ExchangeRateDTO;
 
-class ExchangeRateDTO implements ExchangeRateDTOInterface
+
+use App\Enum\Currency;
+
+class CurrencyBeaconExchangeRateDTO implements ExchangeRateDTOInterface
 {
     private float $sellRate;
     private float $buyRate;
 
     public function __construct(
-        array $exchangeRates,
+        private array $exchangeRates,
     ) {
-        $this->sellRate = $exchangeRates['sale'];
-        $this->buyRate = $exchangeRates['buy'];
+        $this->sellRate = $this->buyRate = $this->exchangeRates[Currency::UAH->value];
     }
 
     public function getSellExchangeRate(): float

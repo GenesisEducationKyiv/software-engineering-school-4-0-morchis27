@@ -75,6 +75,6 @@ class SubscriptionService implements SubscriptionServiceInterface
         NotifiableInterface $notifiable,
         ExchangeRateDTO $exchangeRate
     ): void {
-        $notifiable->notify(new DailyExchangeRateNotification($exchangeRate->getExchangeRate()));
+        $notifiable->notify(new DailyExchangeRateNotification($exchangeRate->getSellExchangeRate()));
     }
 }
