@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Feature;
 
 use App\Models\Subscriber;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -12,7 +13,8 @@ use Faker\Factory as Faker;
 class SubscribeEmailTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_the_subscription_returns_ok_on_success(): void
+
+    public function testSubscriptionReturnsOkOnSuccess(): void
     {
         $faker = Faker::create();
 
@@ -29,12 +31,12 @@ class SubscribeEmailTest extends TestCase
         ]);
         $subscriber = Subscriber::where('email', $email)->first();
 
-        if (!env('SHOULD_BE_VERIFIED')) {
+        if (!config('app.shouldBeVerified')) {
             $this->assertNotNull($subscriber);
         }
     }
 
-    public function test_the_subscription_returns_conflict_on_incorrect_email(): void
+    public function testSubscriptionReturnsConflictOnIncorrectEmail(): void
     {
         $faker = Faker::create();
 
@@ -48,7 +50,7 @@ class SubscribeEmailTest extends TestCase
         $response->assertStatus(400);
     }
 
-    public function test_the_subscription_returns_conflict_on_subscribing_existing_email(): void
+    public function testSubscriptionReturnsConflictOnSubscribingExistingEmail(): void
     {
         $faker = Faker::create();
 
@@ -66,7 +68,7 @@ class SubscribeEmailTest extends TestCase
         $response->assertStatus(409);
     }
 
-    public function test_email_verification_process()
+    public function testEmailVerificationProcess(): void
     {
         Notification::fake();
 

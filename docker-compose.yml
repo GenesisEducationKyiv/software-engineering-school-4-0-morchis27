@@ -48,6 +48,15 @@ services:
             - app
         networks:
             - sds4
+    k6:
+        image: grafana/k6
+        container_name: sds4_k6
+        volumes:
+            - ./tests/k6:/tests
+        networks:
+            - sds4
+        depends_on:
+            - web
 
 networks:
     sds4:
