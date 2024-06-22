@@ -3,21 +3,22 @@
 namespace App\Service\CurrencyExchange\Repository;
 
 use App\DTO\ExchangeRateDTO\PrivatExchangeRateDTO;
+use App\Enum\ConfigSpaceName;
 use App\Enum\Currency;
 use App\Exceptions\MalformedApiResponseException;
+use App\Utils\Utilities;
+use Exception;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Client\Factory as Http;
-use Illuminate\Contracts\Config\Repository as Config;
 use Psr\Log\LoggerInterface;
-
 
 class PrivatCurrencyExchangeRateRepository implements CurrencyExchangeRateRepositoryInterface
 {
     public function __construct(
-        private Config $config,
         private Http $http,
-        private LoggerInterface $logger
+        private LoggerInterface $logger,
+        private Utilities $utilities
     ) {
     }
 
@@ -28,19 +29,26 @@ class PrivatCurrencyExchangeRateRepository implements CurrencyExchangeRateReposi
     {
         $response = $this->http->withOptions(['verify' => true])
             ->get($url);
-        $this->logger->info('PB has a response: ', ['response' => $response->json()]);
+        $this->logger->info('PB has a response: ', ['response' => $response]);
 
         return $response;
     }
 
+    /**
+     * @throws Exception
+     */
     private function getExchangeRateApiUrl(): string
     {
-        return $this->config->get('currencyRepository.repositories.privat.exchangeServiceApiHost');
+        return $this->utilities->getStringValueFromEnvVariable(
+            ConfigSpaceName::CURRENCY_REPOSITORY->value,
+            'repositories.privat.exchangeServiceApiHost'
+        );
     }
 
     /**
      * @throws ConnectionException
      * @throws MalformedApiResponseException
+     * @throws Exception
      */
     public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): PrivatExchangeRateDTO
     {

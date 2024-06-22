@@ -2,6 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Enum\ConfigSpaceName;
+use App\Utils\Utilities;
+use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
 
 class RateTest extends TestCase
@@ -15,7 +18,12 @@ class RateTest extends TestCase
 
     public function testExchangeRateWithInvalidApiKeyReturnsBadRequest(): void
     {
-        config(['app.exchangeServiceApiKey' => 'NOT_REAL_API_KEY']);
+        config([
+            'currencyRepository.repositories.privat.exchangeServiceApiHost' =>
+                config('currencyRepository.repositories.privat.exchangeServiceApiHost') . 'abracadabra',
+            'currencyRepository.repositories.apiLayer.exchangeServiceApiKey' => 'abracadabra',
+            'currencyRepository.repositories.currencyBeacon.exchangeServiceApiKey' => 'abracadabra'
+        ]);
         $response = $this->get('/api/rate');
         $response->assertStatus(400);
     }

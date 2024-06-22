@@ -41,7 +41,7 @@ class SubscriberRepositoryTest extends TestCase
         $this->assertInstanceOf(Subscriber::class, $result);
     }
 
-    public function testAllReturnsAllSubscribers()
+    public function testAllReturnsAllSubscribers(): void
     {
         Subscriber::factory()->count(3)->create();
         $result = $this->repository->all();
@@ -52,7 +52,7 @@ class SubscriberRepositoryTest extends TestCase
         $this->assertCount(3, $result);
     }
 
-    public function testCreateCreatesNewSubscriber()
+    public function testCreateCreatesNewSubscriber(): void
     {
         $email = Faker::create()->safeEmail;
 
@@ -68,7 +68,7 @@ class SubscriberRepositoryTest extends TestCase
         $this->assertEquals($email, $subscriber->email);
     }
 
-    public function testUpdateUpdatesSubscriber()
+    public function testUpdateUpdatesSubscriber(): void
     {
         $subscriber = Subscriber::factory()->create(['email' => Faker::create()->safeEmail]);
         $updateSubscriberDTO = new UpdateSubscriberDTO($subscriber->id);
@@ -81,7 +81,7 @@ class SubscriberRepositoryTest extends TestCase
         $this->assertEquals($newEmail, $updatedSubscriber->email);
     }
 
-    public function testDeleteRemovesSubscriber()
+    public function testDeleteRemovesSubscriber(): void
     {
         $subscriber = Subscriber::factory()->create();
 
@@ -91,15 +91,19 @@ class SubscriberRepositoryTest extends TestCase
         $this->assertDatabaseMissing('subscribers', ['id' => $subscriber->id]);
     }
 
-    public function testVerifyMarksEmailAsVerified()
+    public function testVerifyMarksEmailAsVerified(): void
     {
         $subscriber = Subscriber::factory()->create(['email_verified_at' => null]);
 
         $this->repository->verify($subscriber);
-        $this->assertNotNull($subscriber->fresh()->email_verified_at);
+
+        $subscriber = $subscriber->fresh();
+
+        $this->assertNotNull($subscriber);
+        $this->assertNotNull($subscriber->email_verified_at);
     }
 
-    public function testIsVerifiedChecksVerificationStatus()
+    public function testIsVerifiedChecksVerificationStatus(): void
     {
         $subscriber = Subscriber::factory()->create(['email_verified_at' => now()]);
 

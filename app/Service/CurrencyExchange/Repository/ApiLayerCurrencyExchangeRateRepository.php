@@ -28,8 +28,11 @@ class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepo
      */
     private function getExchangeResponse(string $url): Response
     {
-        $response = $this->http->withOptions(['verify' => true])
-            ->withHeader('apikey', $this->config->get('app.exchangeServiceApiKey'))
+        $response = $this->http
+            ->withHeader(
+                'apikey',
+                $this->config->get('currencyRepository.repositories.apiLayer.exchangeServiceApiKey')
+            )->withOptions(['verify' => true])
             ->get($url);
         $this->logger->info('Api Layer has a response: ', ['response' => $response->json()]);
 

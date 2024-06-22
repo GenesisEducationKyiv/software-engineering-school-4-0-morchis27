@@ -3,18 +3,20 @@
 namespace App\Utils;
 
 use Exception;
+use Illuminate\Contracts\Config\Repository;
 
 class Utilities
 {
-    /**
-     * @throws Exception
-     */
-    public static function getStringValueFromEnvVariable(
+    public function __construct(
+        private Repository $config
+    ) {
+    }
+
+    public function getStringValueFromEnvVariable(
         string $configVariableSpace,
         string $configVariableKey
     ): string {
-        $configVariable = self::getValueFromEnvVariable($configVariableSpace, $configVariableKey);
-
+        $configVariable = $this->getValueFromEnvVariable($configVariableSpace, $configVariableKey);
         if (!is_string($configVariable)) {
             throw new Exception("Couldn't cast config value of $configVariableKey to string");
         }
@@ -25,11 +27,11 @@ class Utilities
     /**
      * @throws Exception
      */
-    public static function getIntValueFromEnvVariable(
+    public function getIntValueFromEnvVariable(
         string $configVariableSpace,
         string $configVariableKey
     ): int {
-        $configVariable = self::getValueFromEnvVariable($configVariableSpace, $configVariableKey);
+        $configVariable = $this->getValueFromEnvVariable($configVariableSpace, $configVariableKey);
 
         if (!is_int($configVariable)) {
             throw new Exception("Couldn't cast config value of $configVariableKey to int");
@@ -38,10 +40,10 @@ class Utilities
         return $configVariable;
     }
 
-    private static function getValueFromEnvVariable(
+    private function getValueFromEnvVariable(
         string $configVariableSpace,
         string $configVariableKey
     ): mixed {
-        return config($configVariableSpace . '.' . $configVariableKey);
+        return $this->config->get($configVariableSpace . '.' . $configVariableKey);
     }
 }

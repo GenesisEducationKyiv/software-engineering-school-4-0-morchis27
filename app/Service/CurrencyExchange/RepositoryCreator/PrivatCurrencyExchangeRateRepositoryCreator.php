@@ -4,22 +4,21 @@ namespace App\Service\CurrencyExchange\RepositoryCreator;
 
 use App\Service\CurrencyExchange\Repository\CurrencyExchangeRateRepositoryInterface;
 use App\Service\CurrencyExchange\Repository\PrivatCurrencyExchangeRateRepository;
-use Illuminate\Contracts\Config\Repository as ConfigRepository;
+use App\Utils\Utilities;
 use Illuminate\Http\Client\Factory as HttpClientFactory;
 use Psr\Log\LoggerInterface;
 
 class PrivatCurrencyExchangeRateRepositoryCreator implements CurrencyExchangeRateRepositoryCreatorInterface
 {
     public function __construct(
-        private ConfigRepository $config,
         private HttpClientFactory $http,
-        private LoggerInterface $logger
-
+        private LoggerInterface $logger,
+        private Utilities $utilities,
     ) {
     }
 
     public function create(): CurrencyExchangeRateRepositoryInterface
     {
-        return new PrivatCurrencyExchangeRateRepository($this->config, $this->http, $this->logger);
+        return new PrivatCurrencyExchangeRateRepository($this->http, $this->logger, $this->utilities);
     }
 }

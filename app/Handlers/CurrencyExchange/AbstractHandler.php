@@ -2,7 +2,6 @@
 
 namespace App\Handlers\CurrencyExchange;
 
-
 use App\DTO\ExchangeRateDTO\ExchangeRateDTOInterface;
 use App\Enum\Currency;
 use App\Exceptions\MalformedApiResponseException;
@@ -23,7 +22,7 @@ class AbstractHandler implements HandlerInterface
      */
     public function handle(Currency $currencyFrom, Currency $currencyTo): ?ExchangeRateDTOInterface
     {
-        if(!$this->nextHandler) {
+        if (!$this->nextHandler) {
             throw new MalformedApiResponseException();
         }
 

@@ -155,3 +155,33 @@
 2024-05-29 19:16:12,854 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2024-05-29 19:16:12,855 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2024-05-29 19:16:12,855 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-21 18:26:45,866 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-06-21 18:26:45,866 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-06-21 18:26:45,870 INFO supervisord started with pid 34
+2024-06-21 18:26:46,873 INFO spawned: 'php-fpm' with pid 35
+2024-06-21 18:26:46,875 INFO spawned: 'queue-worker' with pid 36
+2024-06-21 18:26:46,877 INFO spawned: 'schedule-worker' with pid 37
+2024-06-21 18:26:47,913 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-21 18:26:47,913 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-21 18:26:47,914 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-22 18:40:20,696 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-06-22 18:40:20,697 INFO Included extra file "/etc/supervisor/conf.d/app.conf" during parsing
+2024-06-22 18:40:20,700 INFO supervisord started with pid 34
+2024-06-22 18:40:21,703 INFO spawned: 'php-fpm' with pid 35
+2024-06-22 18:40:21,706 INFO spawned: 'queue-worker' with pid 36
+2024-06-22 18:40:21,707 INFO spawned: 'schedule-worker' with pid 37
+2024-06-22 18:40:22,744 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-22 18:40:22,744 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-22 18:40:22,744 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-22 21:22:55,845 WARN exited: queue-worker (exit status 1; not expected)
+2024-06-22 21:22:56,856 INFO spawned: 'queue-worker' with pid 1065
+2024-06-22 21:22:57,858 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-22 21:28:12,330 WARN exited: queue-worker (exit status 1; not expected)
+2024-06-22 21:28:13,333 INFO spawned: 'queue-worker' with pid 1110
+2024-06-22 21:28:14,335 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-22 21:31:37,665 WARN exited: queue-worker (exit status 1; not expected)
+2024-06-22 21:31:38,667 INFO spawned: 'queue-worker' with pid 1140
+2024-06-22 21:31:39,669 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-06-22 21:51:31,204 WARN exited: queue-worker (exit status 1; not expected)
+2024-06-22 21:51:32,206 INFO spawned: 'queue-worker' with pid 1256
+2024-06-22 21:51:33,208 INFO success: queue-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

@@ -7,5 +7,5 @@ use App\Enum\Currency;
 
 interface CurrencyExchangeRateInterface
 {
-    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): ExchangeRateDTOInterface;
+    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): ?ExchangeRateDTOInterface;
 }

@@ -52,6 +52,10 @@ class CurrencyBeaconCurrencyExchangeRateRepository implements CurrencyExchangeRa
 
         $responseBodyArray = $this->getExchangeResponse($url)->json();
 
+        if (!is_array($responseBodyArray)) {
+            throw new MalformedApiResponseException();
+        }
+
         if (!($responseBodyArray['result'] === 'success')) {
             throw new MalformedApiResponseException('Couldn\'t get appropriate response');
         }

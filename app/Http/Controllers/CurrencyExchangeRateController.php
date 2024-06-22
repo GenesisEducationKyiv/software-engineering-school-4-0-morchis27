@@ -18,7 +18,7 @@ class CurrencyExchangeRateController extends Controller
         return $this->successResponse(
             $this->currencyExchangeRateService
                 ->getCurrentRate(Currency::USD, Currency::UAH)
-                ->getSellExchangeRate()
+                ?->getSellExchangeRate()
         );
     }
 }

@@ -7,6 +7,9 @@ class ExchangeRateDTO implements ExchangeRateDTOInterface
     private float $sellRate;
     private float $buyRate;
 
+    /**
+     * @param array<string, float> $exchangeRates
+     */
     public function __construct(
         array $exchangeRates,
     ) {

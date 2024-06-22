@@ -2,12 +2,14 @@
 
 namespace App\DTO\ExchangeRateDTO;
 
-
 class PrivatExchangeRateDTO implements ExchangeRateDTOInterface
 {
     private float $sellRate;
     private float $buyRate;
 
+    /**
+     * @param array<string, float> $exchangeRates
+     */
     public function __construct(
         private array $exchangeRates,
     ) {

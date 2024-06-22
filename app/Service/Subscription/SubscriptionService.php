@@ -4,6 +4,7 @@ namespace App\Service\Subscription;
 
 use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
 use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
+use App\DTO\ExchangeRateDTO\ExchangeRateDTOInterface;
 use App\DTO\VerificationDTO\Subscriber\SubscriberVerificationDTO;
 use App\Enum\EmailVerificationCode;
 use App\Events\Subscribed;
@@ -12,12 +13,14 @@ use App\Models\NotifiableInterface;
 use App\Notifications\DailyExchangeRateNotification;
 use App\Notifications\VerifyEmailQueued;
 use App\Repositories\Subscriber\SubscriberRepositoryInterface;
+use App\Utils\Utilities;
 use Illuminate\Http\Request;
 
 class SubscriptionService implements SubscriptionServiceInterface
 {
     public function __construct(
         private SubscriberRepositoryInterface $subscriberRepository,
+        private Utilities $utilities,
     ) {
     }
 
@@ -68,12 +71,12 @@ class SubscriptionService implements SubscriptionServiceInterface
 
     public function handleVerificationNotification(NotifiableInterface $notifiable): void
     {
-        $notifiable->notify(new VerifyEmailQueued());
+        $notifiable->notify(new VerifyEmailQueued($this->utilities));
     }
 
     public function sendDailyExchangeRateNewsLetterNotification(
         NotifiableInterface $notifiable,
-        ExchangeRateDTO $exchangeRate
+        ExchangeRateDTOInterface $exchangeRate
     ): void {
         $notifiable->notify(new DailyExchangeRateNotification($exchangeRate->getSellExchangeRate()));
     }
