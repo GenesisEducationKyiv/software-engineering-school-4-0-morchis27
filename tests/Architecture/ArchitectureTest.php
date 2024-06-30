@@ -2,14 +2,13 @@
 
 namespace Tests\Architecture;
 
-
 use PHPat\Selector\Selector;
 use PHPat\Test\Builder\Rule;
 use PHPat\Test\PHPat;
 
 final class ArchitectureTest
 {
-    public function test_repository_does_not_depend_on_other_layers(): Rule
+    public function testRepositoryDoesNotDependOnOtherLayers(): Rule
     {
         return PHPat::rule()
             ->classes(Selector::inNamespace('App\Repositories'))
@@ -25,7 +24,7 @@ final class ArchitectureTest
             ->because('repository must not depend on layers that utilize repositories as source of data');
     }
 
-    public function test_service_does_not_depend_on_upper_layers(): Rule
+    public function testServiceDoesNotDependOnUpperLayers(): Rule
     {
         return PHPat::rule()
             ->classes(Selector::inNamespace('App\Service'))
@@ -37,7 +36,7 @@ final class ArchitectureTest
             ->because('service must not depend on any class that is utilizing service to perform some task');
     }
 
-    public function test_model_does_not_depend_on_controller(): Rule
+    public function testModelDoesNotDependOnController(): Rule
     {
         return PHPat::rule()
             ->classes(Selector::inNamespace('App\Models'))
