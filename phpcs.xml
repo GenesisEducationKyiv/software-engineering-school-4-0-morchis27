@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="Standards">
+    <rule ref="PSR1"/>
+    <rule ref="PSR2"/>
+    <rule ref="PSR12"/>
+    <config name="installed_paths" value="../../squizlabs/php_codesniffer/CodeSniffer/Standards"/>
+</ruleset>
