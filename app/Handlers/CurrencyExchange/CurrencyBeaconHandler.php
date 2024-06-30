@@ -4,7 +4,6 @@ namespace App\Handlers\CurrencyExchange;
 
 use App\DTO\ExchangeRateDTO\ExchangeRateDTOInterface;
 use App\Enum\Currency;
-use App\Service\CurrencyExchange\Repository\CurrencyBeaconCurrencyExchangeRateRepository;
 use App\Service\CurrencyExchange\Repository\CurrencyExchangeRateRepositoryInterface;
 use App\Service\CurrencyExchange\RepositoryCreator\CurrencyExchangeRateRepositoryCreatorInterface;
 use Exception;

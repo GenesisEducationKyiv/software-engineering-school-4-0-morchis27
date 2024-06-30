@@ -4,7 +4,6 @@ namespace App\Handlers\CurrencyExchange;
 
 use App\DTO\ExchangeRateDTO\ExchangeRateDTOInterface;
 use App\Enum\Currency;
-use App\Service\CurrencyExchange\Repository\ApiLayerCurrencyExchangeRateRepository;
 use App\Service\CurrencyExchange\Repository\CurrencyExchangeRateRepositoryInterface;
 use App\Service\CurrencyExchange\RepositoryCreator\CurrencyExchangeRateRepositoryCreatorInterface;
 use Exception;
@@ -13,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 class ApiLayerHandler extends AbstractHandler
 {
     private CurrencyExchangeRateRepositoryInterface $currencyExchangeRepository;
+
     public function __construct(
         private CurrencyExchangeRateRepositoryCreatorInterface $currencyExchangeRateRepositoryCreator
     ) {
