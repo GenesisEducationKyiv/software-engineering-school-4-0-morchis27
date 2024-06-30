@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Service\CurrencyExchange\Repository;
+namespace App\Repositories\CurrencyExchange;
 
 use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
 use App\Enum\Currency;
 use App\Exceptions\MalformedApiResponseException;
-use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Http\Client\Response;
-use Illuminate\Http\Client\Factory as Http;
 use Illuminate\Contracts\Config\Repository as Config;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\Factory as Http;
+use Illuminate\Http\Client\Response;
 use Psr\Log\LoggerInterface;
 
 class ApiLayerCurrencyExchangeRateRepository implements CurrencyExchangeRateRepositoryInterface

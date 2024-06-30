@@ -5,12 +5,12 @@ namespace App\Providers;
 use App\Handlers\CurrencyExchange\ApiLayerHandler;
 use App\Handlers\CurrencyExchange\CurrencyBeaconHandler;
 use App\Handlers\CurrencyExchange\PrivatHandler;
+use App\Repositories\CurrencyExchange\RepositoryCreator\ApiLayerCurrencyExchangeRateRepositoryCreator;
+use App\Repositories\CurrencyExchange\RepositoryCreator\CurrencyBeaconCurrencyExchangeRateRepositoryCreator;
+use App\Repositories\CurrencyExchange\RepositoryCreator\CurrencyExchangeRateRepositoryCreatorInterface;
+use App\Repositories\CurrencyExchange\RepositoryCreator\PrivatCurrencyExchangeRateRepositoryCreator;
 use App\Service\CurrencyExchange\CurrencyExchangeRateInterface;
 use App\Service\CurrencyExchange\CurrencyExchangeRateService;
-use App\Service\CurrencyExchange\RepositoryCreator\ApiLayerCurrencyExchangeRateRepositoryCreator;
-use App\Service\CurrencyExchange\RepositoryCreator\CurrencyBeaconCurrencyExchangeRateRepositoryCreator;
-use App\Service\CurrencyExchange\RepositoryCreator\CurrencyExchangeRateRepositoryCreatorInterface;
-use App\Service\CurrencyExchange\RepositoryCreator\PrivatCurrencyExchangeRateRepositoryCreator;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 

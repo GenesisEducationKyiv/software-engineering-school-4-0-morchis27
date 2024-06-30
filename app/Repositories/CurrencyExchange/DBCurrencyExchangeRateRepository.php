@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\CurrencyExchange\Repository;
+namespace App\Repositories\CurrencyExchange;
 
 use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
 use App\Enum\Currency;

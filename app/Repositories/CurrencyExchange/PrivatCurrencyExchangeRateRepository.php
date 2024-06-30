@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\CurrencyExchange\Repository;
+namespace App\Repositories\CurrencyExchange;
 
 use App\DTO\ExchangeRateDTO\PrivatExchangeRateDTO;
 use App\Enum\ConfigSpaceName;
@@ -9,8 +9,8 @@ use App\Exceptions\MalformedApiResponseException;
 use App\Utils\Utilities;
 use Exception;
 use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Http\Client\Response;
 use Illuminate\Http\Client\Factory as Http;
+use Illuminate\Http\Client\Response;
 use Psr\Log\LoggerInterface;
 
 class PrivatCurrencyExchangeRateRepository implements CurrencyExchangeRateRepositoryInterface
