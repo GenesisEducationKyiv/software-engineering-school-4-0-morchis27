@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Service\CurrencyExchange\RepositoryCreator;
+namespace App\Repositories\CurrencyExchange\RepositoryCreator;
 
-use App\Service\CurrencyExchange\Repository\CurrencyBeaconCurrencyExchangeRateRepository;
-use App\Service\CurrencyExchange\Repository\CurrencyExchangeRateRepositoryInterface;
-use Illuminate\Http\Client\Factory as Http;
+use App\Repositories\CurrencyExchange\CurrencyBeaconCurrencyExchangeRateRepository;
+use App\Repositories\CurrencyExchange\CurrencyExchangeRateRepositoryInterface;
 use Illuminate\Contracts\Config\Repository as Config;
+use Illuminate\Http\Client\Factory as Http;
 use Psr\Log\LoggerInterface;
 
 class CurrencyBeaconCurrencyExchangeRateRepositoryCreator implements CurrencyExchangeRateRepositoryCreatorInterface
