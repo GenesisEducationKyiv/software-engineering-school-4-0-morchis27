@@ -2,21 +2,41 @@
 
 namespace App\Service\CurrencyExchange;
 
-use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
+use App\DTO\ExchangeRateDTO\ExchangeRateDTOInterface;
 use App\Enum\Currency;
-use App\Service\CurrencyExchange\Repository\CurrencyExchangeRateRepositoryInterface;
+use App\Handlers\CurrencyExchange\ApiLayerHandler;
+use App\Handlers\CurrencyExchange\CurrencyBeaconHandler;
+use App\Handlers\CurrencyExchange\HandlerInterface;
+use App\Handlers\CurrencyExchange\PrivatHandler;
+use Exception;
 
 class CurrencyExchangeRateService implements CurrencyExchangeRateInterface
 {
+    /**
+     * @param array<int, HandlerInterface> $handlers
+     */
     public function __construct(
-        private CurrencyExchangeRateRepositoryInterface $repository,
+        private array $handlers,
     ) {
+        $this->setHandlers($this->handlers);
     }
 
-    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): ExchangeRateDTO
+    /**
+     * @throws Exception
+     */
+    public function getCurrentRate(Currency $currencyFrom, Currency $currencyTo): ?ExchangeRateDTOInterface
     {
-        $rate = $this->repository->getCurrentRate($currencyFrom, $currencyTo);
+        return $this->handlers[0]->handle($currencyFrom, $currencyTo);
+    }
 
-        return $rate;
+    /**
+     * @param array<int, HandlerInterface> $handlers
+     * @return void
+     */
+    private function setHandlers(array $handlers): void
+    {
+        for ($i = 0; $i < count($handlers) - 1; $i++) {
+            $handlers[$i]->setNext($handlers[$i + 1]);
+        }
     }
 }

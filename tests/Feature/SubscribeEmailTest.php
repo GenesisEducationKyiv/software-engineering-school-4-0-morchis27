@@ -81,7 +81,7 @@ class SubscribeEmailTest extends TestCase
         $verificationUrl = URL::temporarySignedRoute(
             'verification.verify',
             now()->addMinutes(60),
-            ['id' => $subscriber->id, 'hash' => sha1($subscriber->email)]
+            ['subscriber' => $subscriber->id, 'hash' => sha1($subscriber->email)]
         );
 
         $response = $this->get($verificationUrl);

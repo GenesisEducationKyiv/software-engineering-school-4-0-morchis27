@@ -13,17 +13,26 @@ use App\Models\Subscriber;
 use App\Repositories\Subscriber\SubscriberRepositoryInterface;
 use App\Service\Subscription\SubscriptionService;
 use App\Service\Subscription\SubscriptionServiceInterface;
+use App\Utils\Utilities;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
 use PHPUnit\Framework\MockObject\Exception;
 use Faker\Factory as Faker;
+use PHPUnit\Framework\MockObject\MockObject;
 use Tests\TestCase;
 
 class SubscriptionServiceTest extends TestCase
 {
-    private SubscriberRepositoryInterface $subscriberRepository;
+    /**
+     * @var MockObject|SubscriberRepositoryInterface
+     */
+    private SubscriberRepositoryInterface|MockObject $subscriberRepository;
     private SubscriptionServiceInterface $subscriptionService;
 
+    /**
+     * @var MockObject|Utilities
+     */
+    private Utilities|MockObject $utilities;
     /**
      * @throws Exception
      */
@@ -31,18 +40,20 @@ class SubscriptionServiceTest extends TestCase
     {
         parent::setUp();
         $this->subscriberRepository = $this->createMock(SubscriberRepositoryInterface::class);
-        $this->subscriptionService = new SubscriptionService($this->subscriberRepository);
+        $this->utilities = $this->createMock(Utilities::class);
+        $this->subscriptionService = new SubscriptionService($this->subscriberRepository, $this->utilities);
     }
 
     /**
      * @throws Exception
      * @throws ModelNotSavedException
      */
-    public function testSubscribeReturnsNoException()
+    public function testSubscribeReturnsNoException(): void
     {
         Event::fake();
         $createSubscriberDTO = $this->createMock(CreateSubscriberDTO::class);
 
+        // @phpstan-ignore-next-line
         $this->subscriberRepository->expects($this->once())
             ->method('create')
             ->with($createSubscriberDTO)
@@ -56,7 +67,7 @@ class SubscriptionServiceTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testMakeCreationDTOReturnsCreationDTO()
+    public function testMakeCreationDTOReturnsCreationDTO(): void
     {
         $request = $this->createMock(StoreSubscriberRequest::class);
         $request->expects($this->once())
@@ -71,9 +82,10 @@ class SubscriptionServiceTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testVerifyReturnsBasicVerificationDTO()
+    public function testVerifyReturnsBasicVerificationDTO(): void
     {
         $subscriber = $this->createMock(Subscriber::class);
+        // @phpstan-ignore-next-line
         $this->subscriberRepository->expects($this->once())
             ->method('isVerified')
             ->with($subscriber);
@@ -86,7 +98,7 @@ class SubscriptionServiceTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testHandleVerificationNotificationReturnsNoException()
+    public function testHandleVerificationNotificationReturnsNoException(): void
     {
         $subscriber = $this->createMock(NotifiableInterface::class);
         $subscriber->expects($this->once())
@@ -98,13 +110,13 @@ class SubscriptionServiceTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testSendDailyExchangeRateNewsLetterNotification()
+    public function testSendDailyExchangeRateNewsLetterNotification(): void
     {
         $subscriber = $this->createMock(NotifiableInterface::class);
         $exchangeRateDTO = $this->createMock(ExchangeRateDTO::class);
 
         $exchangeRateDTO->expects($this->once())
-            ->method('getExchangeRate');
+            ->method('getSellExchangeRate');
         $subscriber->expects($this->once())
             ->method('notify');
 

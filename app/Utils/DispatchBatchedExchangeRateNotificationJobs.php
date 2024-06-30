@@ -16,14 +16,14 @@ class DispatchBatchedExchangeRateNotificationJobs
     {
         try {
             $currencyExchangeRateService = resolve(CurrencyExchangeRateService::class);
-
+            $utilities = resolve(Utilities::class);
             $currencyExchangeRate = $currencyExchangeRateService
                 ->getCurrentRate(Currency::USD, Currency::UAH);
 
             Subscriber::query()
                 ->whereNotNull('email_verified_at')
                 ->chunk(
-                    Utilities::getIntValueFromEnvVariable(
+                    $utilities->getIntValueFromEnvVariable(
                         ConfigSpaceName::APP->value,
                         'dailyCurrencyExchangeRateNotificationJobBatchSIze'
                     ),
