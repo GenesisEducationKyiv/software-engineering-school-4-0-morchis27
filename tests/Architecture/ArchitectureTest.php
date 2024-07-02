@@ -44,6 +44,6 @@ final class ArchitectureTest
             ->classes(
                 Selector::inNamespace('App\Controller'),
             )
-            ->because('service must not depend on any class that is utilizing service to perform some task');
+            ->because('controllers must not depend on the models');
     }
 }
