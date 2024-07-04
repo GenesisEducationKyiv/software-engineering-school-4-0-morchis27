@@ -19,11 +19,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Dependencies
-        run: cd currency && composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        working-directory: ./currency
       - name: Execute PHPSTAN in currency service
-        run: ./currency/vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
+        run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
+        working-directory: ./currency
       - name: Execute PHPCS in currency service
-        run: ./currency/vendor/bin/phpcs -v --standard=phpcs.xml app tests
+        run: ./vendor/bin/phpcs -v --standard=phpcs.xml app tests
+        working-directory: ./currency
 
   subscription:
     name: subscription phpcs and phpstan checks
@@ -37,8 +40,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Dependencies
-        run: cd subscription && composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        working-directory: ./subscription
       - name: Execute PHPSTAN in subscription service
-        run: ./subscription/vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
+        run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
+        working-directory: ./subscription
       - name: Execute PHPCS in subscription service
-        run: ./subscription/vendor/bin/phpcs -v --standard=phpcs.xml app tests
+        run: ./vendor/bin/phpcs -v --standard=phpcs.xml app tests
+        working-directory: ./subscription
