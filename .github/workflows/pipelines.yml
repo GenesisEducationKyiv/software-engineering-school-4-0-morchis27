@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: cd currency && composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Execute PHPSTAN in currency service
         run: ./currency/vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
       - name: Execute PHPCS in currency service
@@ -37,7 +37,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: cd subscription && composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Execute PHPSTAN in subscription service
         run: ./subscription/vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
       - name: Execute PHPCS in subscription service
