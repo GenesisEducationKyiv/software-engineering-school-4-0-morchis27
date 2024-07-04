@@ -1,0 +1,22 @@
+parameters:
+
+    level: 9
+
+    paths:
+        - app/
+        - tests/
+
+    parallel:
+    	maximumNumberOfProcesses: 2
+    	processTimeout: 300.0
+    	jobSize: 10
+    	minimumNumberOfJobsPerProcess: 2
+
+    phpat:
+        ignore_built_in_classes: true
+
+services:
+     -
+            class: Tests\Architecture\ArchitectureTest
+            tags:
+                        - phpat.test

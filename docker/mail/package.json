@@ -1,0 +1,13 @@
+{
+    "name": "mailer-service",
+    "version": "1.0.0",
+    "description": "desc",
+    "main": "mailer.js",
+    "scripts": {
+        "start": "node mailer.js"
+    },
+    "dependencies": {
+        "kafkajs": "^2.0.0",
+        "nodemailer": "^6.7.2"
+    }
+}

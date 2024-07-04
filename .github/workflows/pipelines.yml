@@ -20,7 +20,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Execute PHPSTAN checks
-        run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
-      - name: Execute PHPCS checks
-        run: ./vendor/bin/phpcs -v --standard=phpcs.xml app tests
+      - name: Execute PHPSTAN in currency service
+        run: ./currency/vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
+      - name: Execute PHPCS in currency service
+        run: ./currency/vendor/bin/phpcs -v --standard=phpcs.xml app tests
+      - name: Execute PHPSTAN in subscription service
+        run: ./subscription/vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
+      - name: Execute PHPCS in subscription service
+        run: ./subscription/vendor/bin/phpcs -v --standard=phpcs.xml app tests

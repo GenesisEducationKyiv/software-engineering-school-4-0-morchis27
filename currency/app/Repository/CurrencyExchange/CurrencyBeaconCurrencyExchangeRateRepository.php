@@ -2,7 +2,6 @@
 
 namespace App\Repository\CurrencyExchange;
 
-
 use App\DTO\ExchangeRateDTO\CurrencyBeaconExchangeRateDTO;
 use App\Enum\Currency;
 use App\Exceptions\MalformedApiResponseException;

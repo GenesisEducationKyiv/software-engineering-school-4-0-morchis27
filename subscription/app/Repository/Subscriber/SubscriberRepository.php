@@ -34,7 +34,7 @@ class SubscriberRepository implements SubscriberRepositoryInterface
      */
     public function findById(string $id): Subscriber
     {
-        $subscriber = $this->subscriber->find($id);
+        $subscriber = $this->subscriber->findOrFail($id);
         if (!$subscriber) {
             throw new NotFoundException();
         }

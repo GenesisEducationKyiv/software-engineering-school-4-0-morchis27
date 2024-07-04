@@ -15,11 +15,6 @@ class VerifyEmailQueued extends VerifyEmail implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(
-        private Utilities $utilities
-    ) {
-    }
-
     private const SUBJECT_STRING = 'Verify Email Address';
     private const FIRST_LINE_STRING = 'Please click the button below to verify your email address.';
     private const ACTION_STRING = 'Verify Email Address';
@@ -37,16 +32,6 @@ class VerifyEmailQueued extends VerifyEmail implements ShouldQueue
         $secondLine = Lang::get(self::SECOND_LINE_STRING);
 
         return (new MailMessage())
-            ->from(
-                $this->utilities->getStringValueFromEnvVariable(
-                    ConfigSpaceName::APP->value,
-                    'MAIL_FROM_ADDRESS'
-                ),
-                $this->utilities->getStringValueFromEnvVariable(
-                    ConfigSpaceName::APP->value,
-                    'MAIL_FROM_NAME'
-                ),
-            )
             ->subject(is_array($subject) ? self::SUBJECT_STRING : $subject)
             ->line(is_array($firstLine) ? self::FIRST_LINE_STRING : $firstLine)
             ->action(is_array($action) ? self::ACTION_STRING : $action, $url)

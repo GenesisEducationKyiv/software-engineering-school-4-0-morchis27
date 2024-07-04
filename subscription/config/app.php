@@ -128,4 +128,5 @@ return [
     'mailFromName' => env('MAIL_FROM_NAME', 'noreply@sds4app.com'),
     'dailyCurrencyExchangeRateNotificationJobBatchSIze' =>
         env('DAILY_CURRENCY_EXCHANGE_RATE_NOTIFICATION_JOB_BATCH_SIZE', 500),
+    'emailConfirmationLink' => 'https://example.com'
 ];

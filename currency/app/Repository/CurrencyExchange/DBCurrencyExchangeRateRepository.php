@@ -2,7 +2,6 @@
 
 namespace App\Repository\CurrencyExchange;
 
-
 use App\DTO\ExchangeRateDTO\ExchangeRateDTO;
 use App\Enum\Currency;
 use Nette\NotImplementedException;

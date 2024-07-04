@@ -3,15 +3,13 @@
 namespace App\Service\Subscription;
 
 use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
-use App\DTO\ExchangeRateDTO\ExchangeRateDTOInterface;
 use App\DTO\VerificationDTO\Subscriber\SubscriberVerificationDTO;
 use App\Enum\EmailVerificationCode;
-use App\Events\Subscribed;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\NotifiableInterface;
-use App\Notifications\DailyExchangeRateNotification;
-use App\Notifications\VerifyEmailQueued;
 use App\Repository\Subscriber\SubscriberRepositoryInterface;
+use App\Service\Message\Messages\EmailVerificationMessage;
+use App\Service\MessageBroker\MessageBrokerInterface;
 use App\Utils\Utilities;
 use Illuminate\Http\Request;
 
@@ -19,6 +17,7 @@ class SubscriptionService implements SubscriptionServiceInterface
 {
     public function __construct(
         private SubscriberRepositoryInterface $subscriberRepository,
+        private MessageBrokerInterface $messageBroker,
         private Utilities $utilities,
     ) {
     }
@@ -31,8 +30,7 @@ class SubscriptionService implements SubscriptionServiceInterface
     public function subscribe(CreateSubscriberDTO $subscriberDTO): void
     {
         $subscriber = $this->subscriberRepository->create($subscriberDTO);
-
-        event(new Subscribed($subscriber));
+        $this->handleVerificationNotification($subscriber);
     }
 
     /**
@@ -70,13 +68,7 @@ class SubscriptionService implements SubscriptionServiceInterface
 
     public function handleVerificationNotification(NotifiableInterface $notifiable): void
     {
-        $notifiable->notify(new VerifyEmailQueued($this->utilities));
-    }
-
-    public function sendDailyExchangeRateNewsLetterNotification(
-        NotifiableInterface $notifiable,
-        ExchangeRateDTOInterface $exchangeRate
-    ): void {
-        $notifiable->notify(new DailyExchangeRateNotification($exchangeRate->getSellExchangeRate()));
+        $this->messageBroker
+            ->publish(new EmailVerificationMessage($notifiable->getNotificationRefer(), $this->utilities));
     }
 }

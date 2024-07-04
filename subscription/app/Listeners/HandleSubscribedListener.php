@@ -10,7 +10,7 @@ class HandleSubscribedListener implements ShouldQueue
 {
     public function __construct(
         private bool $shouldBeVerified,
-        private SubscriptionServiceInterface $subscriptionService
+        private SubscriptionServiceInterface $subscriptionService,
     ) {
     }
 

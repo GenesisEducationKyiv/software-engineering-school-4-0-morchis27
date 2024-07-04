@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-
 use App\Handlers\CurrencyExchange\ApiLayerHandler;
 use App\Handlers\CurrencyExchange\CurrencyBeaconHandler;
 use App\Handlers\CurrencyExchange\PrivatHandler;
@@ -41,6 +40,5 @@ class CurrencyExchangeRateServiceProvider extends ServiceProvider
         $this->app->when(ApiLayerHandler::class)
             ->needs(CurrencyExchangeRateRepositoryCreatorInterface::class)
             ->give(ApiLayerCurrencyExchangeRateRepositoryCreator::class);
-
     }
 }

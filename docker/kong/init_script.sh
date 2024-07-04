@@ -6,6 +6,7 @@ done
 
 echo "kong is up"
 sleep 10
+
 until curl -i -X POST --url http://kong:8001/services/ \
     --data 'name=currency-service' \
     --data 'url=http://currency_nginx:80'

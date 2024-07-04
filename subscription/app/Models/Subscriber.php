@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 /**
+ * @method Subscriber|null findOrFail($id);
+ * @method Subscriber create(array $data);
  * @property string $id
  * @property Carbon $email_verified_at
  * @property string $email

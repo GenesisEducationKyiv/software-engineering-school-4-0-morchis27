@@ -3,22 +3,29 @@
 namespace App\Utils;
 
 use App\Enum\ConfigSpaceName;
-use App\Enum\Currency;
-use App\Jobs\SendDailyExchangeRateBatchNotifications;
 use App\Models\Subscriber;
-use App\Service\CurrencyExchange\CurrencyExchangeRateService;
+use App\Service\Currency\CurrencyService;
+use App\Service\Currency\CurrencyServiceInterface;
+use App\Service\Message\Messages\DailyExchangeRateNotificationMessage;
+use App\Service\MessageBroker\MessageBrokerInterface;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Log;
 
 class DispatchBatchedExchangeRateNotificationJobs
 {
     public function __invoke(): void
     {
         try {
-            $currencyExchangeRateService = resolve(CurrencyExchangeRateService::class);
+            Log::info('started');
+            /** @var CurrencyService $currencyExchangeRateService */
+            $currencyExchangeRateService = resolve(CurrencyServiceInterface::class);
+
             $utilities = resolve(Utilities::class);
+            $messageBroker = resolve(MessageBrokerInterface::class);
             $currencyExchangeRate = $currencyExchangeRateService
-                ->getCurrentRate(Currency::USD, Currency::UAH);
+                ->getRate();
+            Log::info('rate');
 
             Subscriber::query()
                 ->whereNotNull('email_verified_at')
@@ -27,12 +34,16 @@ class DispatchBatchedExchangeRateNotificationJobs
                         ConfigSpaceName::APP->value,
                         'dailyCurrencyExchangeRateNotificationJobBatchSIze'
                     ),
-                    function ($subscribers) use ($currencyExchangeRate) {
+                    function ($subscribers) use ($currencyExchangeRate, $messageBroker, $utilities) {
+                        Log::info('subscribers', [$subscribers]);
                         /** @var Collection<int, Subscriber> $subscribers */
-                        dispatch(new SendDailyExchangeRateBatchNotifications(
-                            $subscribers->all(),
-                            $currencyExchangeRate
-                        ));
+                        foreach ($subscribers as $subscriber) {
+                            $messageBroker->publish(new DailyExchangeRateNotificationMessage(
+                                $subscriber,
+                                $currencyExchangeRate,
+                                $utilities
+                            ));
+                        }
                     }
                 );
         } catch (Exception $e) {

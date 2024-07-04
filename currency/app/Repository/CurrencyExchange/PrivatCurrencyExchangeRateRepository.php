@@ -2,7 +2,6 @@
 
 namespace App\Repository\CurrencyExchange;
 
-
 use App\DTO\ExchangeRateDTO\PrivatExchangeRateDTO;
 use App\Enum\ConfigSpaceName;
 use App\Enum\Currency;

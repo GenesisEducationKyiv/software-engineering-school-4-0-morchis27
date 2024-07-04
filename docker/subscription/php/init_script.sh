@@ -6,4 +6,4 @@ composer install --no-interaction --prefer-dist --optimize-autoloader
 
 php artisan migrate
 
-exec php-fpm
+supervisord -c /etc/supervisor/supervisord.conf

@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\DTO\VerificationDTO\BasicVerificationDTOInterface;
 use App\Models\NotifiableInterface;
+use App\Service\MessageBroker\MessageBrokerInterface;
 
 interface VerifiableInterface
 {
