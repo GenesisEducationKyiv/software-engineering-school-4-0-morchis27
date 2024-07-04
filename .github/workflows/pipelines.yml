@@ -18,8 +18,10 @@ jobs:
           php-version: '8.2'
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Install Dependencies currency
+        run: cd currency && composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Install Dependencies subscription
+        run: cd subscription && composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Execute PHPSTAN in currency service
         run: ./currency/vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
       - name: Execute PHPCS in currency service
