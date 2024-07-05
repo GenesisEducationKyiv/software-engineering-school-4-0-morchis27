@@ -40,7 +40,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: composer update
         working-directory: ./subscription
       - name: Execute PHPSTAN in subscription service
         run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
