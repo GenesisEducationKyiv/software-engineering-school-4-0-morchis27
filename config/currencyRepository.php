@@ -16,17 +16,17 @@ return [
 
     'repositories' => [
         'apiLayer' => [
-            'creator' => \App\Service\CurrencyExchange\RepositoryCreator\ApiLayerCurrencyExchangeRateRepositoryCreator::class,
+            'creator' => \App\Repositories\CurrencyExchange\RepositoryCreator\ApiLayerCurrencyExchangeRateRepositoryCreator::class,
             'exchangeServiceApiKey' => env('EXCHANGE_SERVICE_API_KEY'),
             'exchangeServiceApiHost' => env('EXCHANGE_SERVICE_API_HOST'),
         ],
         'currencyBeacon' => [
-            'creator' => \App\Service\CurrencyExchange\RepositoryCreator\CurrencyBeaconCurrencyExchangeRateRepositoryCreator::class,
+            'creator' => \App\Repositories\CurrencyExchange\RepositoryCreator\CurrencyBeaconCurrencyExchangeRateRepositoryCreator::class,
             'exchangeServiceApiKey' => env('CURRENCY_BEACON_EXCHANGE_SERVICE_API_KEY'),
             'exchangeServiceApiHost' => env('CURRENCY_BEACON_EXCHANGE_SERVICE_API_HOST'),
         ],
         'privat' => [
-            'creator' => \App\Service\CurrencyExchange\RepositoryCreator\PrivatCurrencyExchangeRateRepositoryCreator::class,
+            'creator' => \App\Repositories\CurrencyExchange\RepositoryCreator\PrivatCurrencyExchangeRateRepositoryCreator::class,
             'exchangeServiceApiKey' => env('PRIVAT_EXCHANGE_SERVICE_API_KEY', null),
             'exchangeServiceApiHost' => env('PRIVAT_EXCHANGE_SERVICE_API_HOST'),
         ],

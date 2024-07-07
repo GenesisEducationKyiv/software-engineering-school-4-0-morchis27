@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service\CurrencyExchange\RepositoryCreator;
+namespace App\Repositories\CurrencyExchange\RepositoryCreator;
 
-use App\Service\CurrencyExchange\Repository\CurrencyExchangeRateRepositoryInterface;
-use App\Service\CurrencyExchange\Repository\PrivatCurrencyExchangeRateRepository;
+use App\Repositories\CurrencyExchange\CurrencyExchangeRateRepositoryInterface;
+use App\Repositories\CurrencyExchange\PrivatCurrencyExchangeRateRepository;
 use App\Utils\Utilities;
 use Illuminate\Http\Client\Factory as HttpClientFactory;
 use Psr\Log\LoggerInterface;
