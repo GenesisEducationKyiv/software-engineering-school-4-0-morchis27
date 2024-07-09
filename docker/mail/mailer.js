@@ -20,7 +20,7 @@ const run = async () => {
 
     await consumer.run({
         eachMessage: async ({ topic, partition, message }) => {
-            const emailDetails = JSON.parse(message.value.toString());
+            const emailDetails = JSON.parse(message.value.toString()).data;
 
             const mailOptions = {
                 from: emailDetails.from || 'asdasd@example.com',

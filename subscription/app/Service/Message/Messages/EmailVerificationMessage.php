@@ -3,11 +3,12 @@
 namespace App\Service\Message\Messages;
 
 use App\Enum\ConfigSpaceName;
-use App\Notifications\VerifyEmailQueued;
 use App\Service\Message\KafkaMessageWrapper;
 use App\Utils\Utilities;
+use Carbon\Carbon;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Lang;
+use Ramsey\Uuid\Uuid;
 
 readonly class EmailVerificationMessage extends KafkaMessageWrapper
 {
@@ -37,7 +38,7 @@ readonly class EmailVerificationMessage extends KafkaMessageWrapper
         $mailMessageString = (new MailMessage())
             ->line(Lang::get('Please click the button below to verify your email address.'))
             ->action(
-                /** @phpstan-ignore-next-line */
+            /** @phpstan-ignore-next-line */
                 Lang::get('Verify Email Address'),
                 $this->utilities->getStringValueFromEnvVariable(
                     ConfigSpaceName::APP->value,
@@ -48,15 +49,25 @@ readonly class EmailVerificationMessage extends KafkaMessageWrapper
             ->render()->toHtml();
 
         return [
-            'from' => $this->utilities->getStringValueFromEnvVariable(
-                ConfigSpaceName::APP->value,
-                'mailFromAddress'
-            ),
-            'subject' => $subject,
-            /** @phpstan-ignore-next-line */
-            'text' => $firstLine . ' ' . $action,
-            'to' => $this->email,
-            'html' => $mailMessageString
+            'eventId' => Uuid::uuid4(),
+            'eventType' => $this->getType(),
+            'timestamp' => Carbon::now()->toIso8601String(),
+            'data' => [
+                'from' => $this->utilities->getStringValueFromEnvVariable(
+                    ConfigSpaceName::APP->value,
+                    'mailFromAddress'
+                ),
+                'subject' => $subject,
+                /** @phpstan-ignore-next-line */
+                'text' => $firstLine . ' ' . $action,
+                'to' => $this->email,
+                'html' => $mailMessageString
+            ],
         ];
+    }
+
+    protected function getType(): string
+    {
+        return 'mail.VerificationNotification';
     }
 }

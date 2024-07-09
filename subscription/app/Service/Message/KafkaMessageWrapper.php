@@ -4,7 +4,7 @@ namespace App\Service\Message;
 
 use Junges\Kafka\Message\Message;
 
-readonly class KafkaMessageWrapper implements MessageWrapperInterface
+abstract readonly class KafkaMessageWrapper implements MessageWrapperInterface
 {
     protected Message $message;
 
@@ -31,4 +31,6 @@ readonly class KafkaMessageWrapper implements MessageWrapperInterface
     {
         return $this->message;
     }
+
+    abstract protected function getType(): string;
 }
