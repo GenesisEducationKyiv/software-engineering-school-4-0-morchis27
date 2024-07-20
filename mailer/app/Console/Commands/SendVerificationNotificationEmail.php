@@ -15,8 +15,6 @@ use Junges\Kafka\Facades\Kafka;
 
 class SendVerificationNotificationEmail extends Command
 {
-
-
     /**
      * The name and signature of the console command.
      *
@@ -34,7 +32,7 @@ class SendVerificationNotificationEmail extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         try {
             $consumer = Kafka::consumer()
@@ -48,8 +46,10 @@ class SendVerificationNotificationEmail extends Command
                 ) {
                     /** @var ConsumerMessage $message */
                     foreach ($collection as $message) {
-                        Notification::route('mail',
-                            $message->getBody()['data']['to'])
+                        Notification::route(
+                            'mail',
+                            $message->getBody()['data']['to']
+                        )
                             ->notify(new VerifyEmailQueued());
                     }
                 })

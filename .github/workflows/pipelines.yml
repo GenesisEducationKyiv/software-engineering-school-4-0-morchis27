@@ -54,3 +54,30 @@ jobs:
       - name: Execute PHPCS in subscription service
         run: ./vendor/bin/phpcs -v --standard=phpcs.xml app tests
         working-directory: ./subscription
+
+  mailer:
+    name: mailer phpcs and phpstan checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fetch PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.2'
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install kafka
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y php-pear librdkafka-dev
+          sudo pecl install rdkafka
+          echo "extension=rdkafka.so" | sudo tee -a $(php -r 'echo php_ini_loaded_file();')
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        working-directory: ./mailer
+      - name: Execute PHPSTAN in subscription service
+        run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
+        working-directory: ./subscription
+      - name: Execute PHPCS in subscription service
+        run: ./vendor/bin/phpcs -v --standard=phpcs.xml app tests
+        working-directory: ./subscription

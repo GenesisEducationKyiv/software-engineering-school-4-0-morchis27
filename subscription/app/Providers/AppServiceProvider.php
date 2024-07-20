@@ -5,8 +5,6 @@ namespace App\Providers;
 use App\Listeners\HandleSubscribedListener;
 use App\Service\MessageBroker\KafkaMessageBroker;
 use App\Service\MessageBroker\MessageBrokerInterface;
-use App\Services\Currency\CurrencyService;
-use App\Services\Currency\CurrencyServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,7 +29,6 @@ class AppServiceProvider extends ServiceProvider
                 /** @phpstan-ignore-next-line */
                 return (string) config('kafka.topics.email');
             });
-        $this->app->bind(CurrencyServiceInterface::class, CurrencyService::class);
     }
 
     /**

@@ -3,15 +3,15 @@
 namespace Tests\Unit;
 
 use App\Notifications\DailyCurrencyExchangeEmail;
+use Illuminate\Testing\PendingCommand;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Notification;
 use Junges\Kafka\Facades\Kafka;
 use Junges\Kafka\Message\ConsumedMessage;
-use App\Notifications\VerifyEmailQueued;
 
 class DailyExchangeRateEmailTest extends TestCase
 {
-    public function test_verification_email_sent()
+    public function testVerificationEmailSent(): void
     {
         Notification::fake();
         Kafka::fake();
@@ -46,8 +46,11 @@ class DailyExchangeRateEmailTest extends TestCase
             ),
         ]);
 
-        $this->artisan('app:send-email')
-            ->assertExitCode(0);
+        $commandExecutionResult = $this->artisan('app:send-email');
+
+        if($commandExecutionResult instanceof PendingCommand) {
+            $commandExecutionResult->assertExitCode(0);
+        }
 
         Notification::assertSentTimes(DailyCurrencyExchangeEmail::class, 3);
     }

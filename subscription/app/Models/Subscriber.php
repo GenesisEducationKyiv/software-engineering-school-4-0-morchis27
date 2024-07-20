@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 /**
  * @method Subscriber|null findOrFail($id);
  * @method Subscriber create(array $data);
+ * @method where(string $field, mixed $value)
  * @property string $id
  * @property Carbon $email_verified_at
  * @property string $email

@@ -30,12 +30,6 @@ class SubscriptionServiceTest extends TestCase
     private SubscriptionServiceInterface $subscriptionService;
     private MessageBrokerInterface $messageBroker;
 
-
-    /**
-     * @var MockObject|Utilities
-     */
-    private Utilities|MockObject $utilities;
-
     /**
      * @throws Exception
      */
@@ -43,13 +37,11 @@ class SubscriptionServiceTest extends TestCase
     {
         parent::setUp();
         $this->subscriberRepository = $this->createMock(SubscriberRepositoryInterface::class);
-        $this->utilities = $this->createMock(Utilities::class);
         $this->messageBroker = $this->createMock(MessageBrokerInterface::class);
 
         $this->subscriptionService = new SubscriptionService(
             $this->subscriberRepository,
-            $this->messageBroker,
-            $this->utilities
+            $this->messageBroker
         );
     }
 

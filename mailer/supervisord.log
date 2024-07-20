@@ -193,3 +193,10 @@
 2024-07-20 11:06:43,994 INFO spawned: 'schedule-worker' with pid 52
 2024-07-20 11:06:45,014 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2024-07-20 11:06:45,014 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-20 12:06:16,709 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-20 12:06:16,709 INFO Included extra file "/etc/supervisor/conf.d/mailer.conf" during parsing
+2024-07-20 12:06:16,712 INFO supervisord started with pid 34
+2024-07-20 12:06:17,714 INFO spawned: 'php-fpm' with pid 35
+2024-07-20 12:06:17,716 INFO spawned: 'schedule-worker' with pid 36
+2024-07-20 12:06:18,730 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-20 12:06:18,730 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

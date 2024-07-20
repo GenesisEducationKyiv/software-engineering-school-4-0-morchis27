@@ -11,15 +11,13 @@ use App\Repository\Subscriber\SubscriberRepositoryInterface;
 use App\Service\Message\Messages\DailyExchangeRateNotificationMessage;
 use App\Service\Message\Messages\EmailVerificationMessage;
 use App\Service\MessageBroker\MessageBrokerInterface;
-use App\Utils\Utilities;
 use Illuminate\Http\Request;
 
 class SubscriptionService implements SubscriptionServiceInterface
 {
     public function __construct(
         private SubscriberRepositoryInterface $subscriberRepository,
-        private MessageBrokerInterface $messageBroker,
-        private Utilities $utilities,
+        private MessageBrokerInterface $messageBroker
     ) {
     }
 

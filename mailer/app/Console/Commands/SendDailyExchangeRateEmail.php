@@ -14,7 +14,6 @@ use Junges\Kafka\Facades\Kafka;
 
 class SendDailyExchangeRateEmail extends Command
 {
-
     public function __construct(
         private CurrencyServiceInterface $currencyService,
     ) {
@@ -38,7 +37,7 @@ class SendDailyExchangeRateEmail extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         try {
             $consumer = Kafka::consumer()
@@ -54,8 +53,10 @@ class SendDailyExchangeRateEmail extends Command
                     $currencyExchangeRate = $this->currencyService->getRate();
                     /** @var ConsumerMessage $message */
                     foreach ($collection as $message) {
-                        Notification::route('mail',
-                            $message->getBody()['data']['to'])
+                        Notification::route(
+                            'mail',
+                            $message->getBody()['data']['to']
+                        )
                             ->notify(new DailyCurrencyExchangeEmail($currencyExchangeRate));
                     }
                 })
