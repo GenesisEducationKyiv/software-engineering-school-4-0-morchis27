@@ -18,7 +18,7 @@ readonly class DailyExchangeRateNotificationMessage extends KafkaMessageWrapper
     }
 
     /**
-     * @return array<string, string>
+     * @return array<string, array<string, string>|Uuid|string>.
      * @throws \Exception
      */
     private function getPayloadArray(): array
