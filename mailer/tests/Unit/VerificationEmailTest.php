@@ -30,7 +30,7 @@ class VerificationEmailTest extends TestCase
 
         $commandExecutionResult = $this->artisan('app:send-verification-email');
 
-        if($commandExecutionResult instanceof PendingCommand) {
+        if ($commandExecutionResult instanceof PendingCommand) {
             $commandExecutionResult->assertExitCode(0);
         }
 

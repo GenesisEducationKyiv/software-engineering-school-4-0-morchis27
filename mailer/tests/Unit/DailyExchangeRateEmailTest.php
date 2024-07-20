@@ -48,7 +48,7 @@ class DailyExchangeRateEmailTest extends TestCase
 
         $commandExecutionResult = $this->artisan('app:send-email');
 
-        if($commandExecutionResult instanceof PendingCommand) {
+        if ($commandExecutionResult instanceof PendingCommand) {
             $commandExecutionResult->assertExitCode(0);
         }
 

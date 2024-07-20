@@ -8,7 +8,6 @@ use Ramsey\Uuid\Uuid;
 
 readonly class EmailVerificationMessage extends KafkaMessageWrapper
 {
-
     public function __construct(
         private string $email
     ) {
