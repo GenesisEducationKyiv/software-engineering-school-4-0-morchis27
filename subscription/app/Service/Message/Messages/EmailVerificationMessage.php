@@ -26,7 +26,7 @@ readonly class EmailVerificationMessage extends KafkaMessageWrapper
     }
 
     /**
-     * @return array<string, string>
+     * @return array<string,array<string, mixed>|Uuid|string>.
      * @throws \Exception
      */
     private function getPayloadArray(): array
