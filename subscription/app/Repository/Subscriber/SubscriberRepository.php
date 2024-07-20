@@ -2,7 +2,7 @@
 
 namespace App\Repository\Subscriber;
 
-use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
+use App\DTO\CreationDTO\Subscriber\SubscriberDTO;
 use App\DTO\CreationDTO\Subscriber\UpdateSubscriberDTO;
 use App\Exceptions\ModelNotExistsException;
 use App\Exceptions\ModelNotSavedException;
@@ -45,7 +45,7 @@ class SubscriberRepository implements SubscriberRepositoryInterface
     /**
      * @throws ModelNotSavedException
      */
-    public function create(CreateSubscriberDTO $createSubscriberDTO): Subscriber
+    public function create(SubscriberDTO $createSubscriberDTO): Subscriber
     {
         try {
             DB::beginTransaction();
@@ -126,5 +126,15 @@ class SubscriberRepository implements SubscriberRepositoryInterface
     {
         // @phpstan-ignore-next-line
         return $subscriber->hasVerifiedEmail();
+    }
+
+    public function findByEmail(string $email): Subscriber
+    {
+        $subscriber = $this->subscriber->where('email', $email)->first();
+        if (!$subscriber) {
+            throw new NotFoundException();
+        }
+
+        return $subscriber;
     }
 }

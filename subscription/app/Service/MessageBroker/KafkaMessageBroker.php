@@ -11,7 +11,6 @@ readonly class KafkaMessageBroker implements MessageBrokerInterface
 {
     public function __construct(
         private string $kafkaHost,
-        private string $topic,
     ) {
     }
 
@@ -21,9 +20,9 @@ readonly class KafkaMessageBroker implements MessageBrokerInterface
     public function publish(MessageWrapperInterface $messageWrapper): void
     {
         Log::info($this->kafkaHost);
-        Log::info($this->topic);
+        Log::info($messageWrapper->getTopic());
 
-        Kafka::publish($this->kafkaHost)->onTopic($this->topic)
+        Kafka::publish($this->kafkaHost)->onTopic($messageWrapper->getTopic())
             ->withMessage($messageWrapper->getMessage())->send();
     }
 }

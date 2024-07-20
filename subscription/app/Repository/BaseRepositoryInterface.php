@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
+use App\DTO\CreationDTO\Subscriber\SubscriberDTO;
 use App\DTO\CreationDTO\Subscriber\UpdateSubscriberDTO;
 use App\Models\Subscriber;
 use Illuminate\Database\Eloquent\Collection;
@@ -21,10 +21,10 @@ interface BaseRepositoryInterface
     public function all(): Collection;
 
     /**
-     * @param CreateSubscriberDTO $createSubscriberDTO
+     * @param SubscriberDTO $createSubscriberDTO
      * @return Subscriber
      */
-    public function create(CreateSubscriberDTO $createSubscriberDTO): Subscriber;
+    public function create(SubscriberDTO $createSubscriberDTO): Subscriber;
 
     /**
      * @param UpdateSubscriberDTO $subscriberDTO
@@ -37,4 +37,6 @@ interface BaseRepositoryInterface
      * @return bool
      */
     public function delete(string $id): bool;
+
+    public function findByEmail(string $email): Subscriber;
 }

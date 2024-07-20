@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Service;
 
-use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
+use App\DTO\CreationDTO\Subscriber\SubscriberDTO;
 use App\DTO\VerificationDTO\BasicVerificationDTOInterface;
 use App\Events\Subscribed;
 use App\Exceptions\ModelNotSavedException;
@@ -60,7 +60,7 @@ class SubscriptionServiceTest extends TestCase
     public function testSubscribeReturnsNoException(): void
     {
         Event::fake();
-        $createSubscriberDTO = $this->createMock(CreateSubscriberDTO::class);
+        $createSubscriberDTO = $this->createMock(SubscriberDTO::class);
         $messageBroker = $this->createMock(MessageBrokerInterface::class);
 
         // @phpstan-ignore-next-line
@@ -87,8 +87,8 @@ class SubscriptionServiceTest extends TestCase
             ->method('string')
             ->willReturn(str(Faker::create()->safeEmail));
 
-        $creationSubscriberDTO = $this->subscriptionService->makeCreationDTO($request);
+        $creationSubscriberDTO = $this->subscriptionService->makeSubscriberDTO($request);
 
-        $this->assertInstanceOf(CreateSubscriberDTO::class, $creationSubscriberDTO);
+        $this->assertInstanceOf(SubscriberDTO::class, $creationSubscriberDTO);
     }
 }

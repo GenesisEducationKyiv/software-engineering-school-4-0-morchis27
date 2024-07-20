@@ -39,6 +39,13 @@ do
    sleep 3
 done
 
+until  curl -i -X POST --url http://kong:8001/services/subscription-service/routes \
+          --data 'paths[]=/api/unsubscribe'\
+          --data 'strip_path=false'
+do
+   sleep 3
+done
+
 printf "\n"
 echo "subscription-service is up"
 printf "\n"

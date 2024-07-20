@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Http\Requests\DeleteSubscriberRequest;
 use App\Http\Requests\StoreSubscriberRequest;
 use App\Models\Subscriber;
 use App\Service\Subscription\SubscriptionServiceInterface;
@@ -22,10 +23,18 @@ class SubscriptionController extends Controller
      */
     public function subscribe(StoreSubscriberRequest $request): JsonResponse
     {
-        $createSubscriberDto = $this->subscriptionService->makeCreationDTO($request);
+        $createSubscriberDto = $this->subscriptionService->makeSubscriberDTO($request);
         $this->subscriptionService->subscribe($createSubscriberDto);
 
         return $this->successResponse(null, 200);
+    }
+
+    public function unsubscribe(DeleteSubscriberRequest $request): JsonResponse
+    {
+        $createSubscriberDto = $this->subscriptionService->makeSubscriberDTO($request);
+        $result = $this->subscriptionService->unsubscribe($createSubscriberDto);
+
+        return $this->successResponse($result, 200);
     }
 
     /**

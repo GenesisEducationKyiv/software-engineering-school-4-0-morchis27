@@ -11,7 +11,7 @@ trait ApiTrait
      * @param int $statusCode
      * @return JsonResponse
      */
-    public function successResponse(float|array|null $value, int $statusCode = 200): JsonResponse
+    public function successResponse(float|array|bool|null $value, int $statusCode = 200): JsonResponse
     {
         return response()->json(
             $value,

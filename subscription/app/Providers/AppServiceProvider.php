@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Listeners\HandleSubscribedListener;
-use App\Service\Currency\CurrencyService;
-use App\Service\Currency\CurrencyServiceInterface;
 use App\Service\MessageBroker\KafkaMessageBroker;
 use App\Service\MessageBroker\MessageBrokerInterface;
+use App\Services\Currency\CurrencyService;
+use App\Services\Currency\CurrencyServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

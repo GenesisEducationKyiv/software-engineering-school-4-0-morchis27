@@ -29,7 +29,7 @@ class CurrencyBeaconCurrencyExchangeRateRepository implements CurrencyExchangeRa
     {
         $response = $this->http->withOptions(['verify' => true])
             ->get($url);
-        $this->logger->info('Currency Beacon has a response: ', ['response' => $response->json()]);
+        $this->logger->info('CurrencyExchange Beacon has a response: ', ['response' => $response->json()]);
 
         return $response;
     }

@@ -33,4 +33,6 @@ abstract readonly class KafkaMessageWrapper implements MessageWrapperInterface
     }
 
     abstract protected function getType(): string;
+
+    abstract public function getTopic(): string;
 }

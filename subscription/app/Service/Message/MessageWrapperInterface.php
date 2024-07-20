@@ -21,4 +21,9 @@ interface MessageWrapperInterface
 
     // @phpstan-ignore-next-line
     public function getMessage();
+
+    /**
+     * @return string
+     */
+    public function getTopic(): string;
 }

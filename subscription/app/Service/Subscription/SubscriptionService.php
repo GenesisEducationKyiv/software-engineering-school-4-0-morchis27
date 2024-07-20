@@ -2,12 +2,13 @@
 
 namespace App\Service\Subscription;
 
-use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
+use App\DTO\CreationDTO\Subscriber\SubscriberDTO;
 use App\DTO\VerificationDTO\Subscriber\SubscriberVerificationDTO;
 use App\Enum\EmailVerificationCode;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\NotifiableInterface;
 use App\Repository\Subscriber\SubscriberRepositoryInterface;
+use App\Service\Message\Messages\DailyExchangeRateNotificationMessage;
 use App\Service\Message\Messages\EmailVerificationMessage;
 use App\Service\MessageBroker\MessageBrokerInterface;
 use App\Utils\Utilities;
@@ -23,14 +24,15 @@ class SubscriptionService implements SubscriptionServiceInterface
     }
 
     /**
-     * @param CreateSubscriberDTO $subscriberDTO
+     * @param SubscriberDTO $subscriberDTO
      * @return void
      * @throws ModelNotSavedException
      */
-    public function subscribe(CreateSubscriberDTO $subscriberDTO): void
+    public function subscribe(SubscriberDTO $subscriberDTO): void
     {
         $subscriber = $this->subscriberRepository->create($subscriberDTO);
         $this->handleVerificationNotification($subscriber);
+        $this->handleDailyExchangeRateSubscription($subscriber);
     }
 
     /**
@@ -56,11 +58,11 @@ class SubscriptionService implements SubscriptionServiceInterface
 
     /**
      * @param Request $request
-     * @return CreateSubscriberDTO
+     * @return SubscriberDTO
      */
-    public function makeCreationDTO(Request $request): CreateSubscriberDTO
+    public function makeSubscriberDTO(Request $request): SubscriberDTO
     {
-        $createSubscriberDTO = new CreateSubscriberDTO();
+        $createSubscriberDTO = new SubscriberDTO();
         $createSubscriberDTO->fillByRequest($request);
 
         return $createSubscriberDTO;
@@ -69,6 +71,19 @@ class SubscriptionService implements SubscriptionServiceInterface
     public function handleVerificationNotification(NotifiableInterface $notifiable): void
     {
         $this->messageBroker
-            ->publish(new EmailVerificationMessage($notifiable->getNotificationRefer(), $this->utilities));
+            ->publish(new EmailVerificationMessage($notifiable->getNotificationRefer()));
+    }
+
+    private function handleDailyExchangeRateSubscription(NotifiableInterface $notifiable): void
+    {
+        $this->messageBroker
+            ->publish(new DailyExchangeRateNotificationMessage($notifiable));
+    }
+
+    public function unsubscribe(SubscriberDTO $subscriberDTO): bool
+    {
+        return $this->subscriberRepository->delete(
+            $this->subscriberRepository->findByEmail($subscriberDTO->getEmail())->id
+        );
     }
 }

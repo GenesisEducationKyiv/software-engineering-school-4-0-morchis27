@@ -4,10 +4,9 @@ namespace App\Utils;
 
 use App\Enum\ConfigSpaceName;
 use App\Models\Subscriber;
-use App\Service\Currency\CurrencyService;
-use App\Service\Currency\CurrencyServiceInterface;
-use App\Service\Message\Messages\DailyExchangeRateNotificationMessage;
 use App\Service\MessageBroker\MessageBrokerInterface;
+use App\Services\Currency\CurrencyService;
+use App\Services\Currency\CurrencyServiceInterface;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
@@ -38,11 +37,11 @@ class DispatchBatchedExchangeRateNotificationJobs
                         Log::info('subscribers', [$subscribers]);
                         /** @var Collection<int, Subscriber> $subscribers */
                         foreach ($subscribers as $subscriber) {
-                            $messageBroker->publish(new DailyExchangeRateNotificationMessage(
-                                $subscriber,
-                                $currencyExchangeRate,
-                                $utilities
-                            ));
+//                            $messageBroker->publish(new DailyExchangeRateNotificationMessage(
+//                                $subscriber,
+//                                $currencyExchangeRate,
+//                                $utilities
+//                            ));
                         }
                     }
                 );

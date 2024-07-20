@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Repository;
 
-use App\DTO\CreationDTO\Subscriber\CreateSubscriberDTO;
+use App\DTO\CreationDTO\Subscriber\SubscriberDTO;
 use App\DTO\CreationDTO\Subscriber\UpdateSubscriberDTO;
 use App\Models\Subscriber;
 use App\Repository\Subscriber\SubscriberRepository;
@@ -62,7 +62,7 @@ class SubscriberRepositoryTest extends TestCase
         $request->setMethod('POST');
         $request->request->add(['email' => $email]);
 
-        $createSubscriberDTO = new CreateSubscriberDTO();
+        $createSubscriberDTO = new SubscriberDTO();
         $createSubscriberDTO->fillByRequest($request);
 
         $subscriber = $this->repository->create($createSubscriberDTO);

@@ -2,23 +2,15 @@
 
 namespace App\Service\Message\Messages;
 
-use App\Enum\ConfigSpaceName;
 use App\Service\Message\KafkaMessageWrapper;
-use App\Utils\Utilities;
 use Carbon\Carbon;
-use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Support\Facades\Lang;
 use Ramsey\Uuid\Uuid;
 
 readonly class EmailVerificationMessage extends KafkaMessageWrapper
 {
-    private const SUBJECT_STRING = 'Verify Email Address';
-    private const FIRST_LINE_STRING = 'Please click the button below to verify your email address.';
-    private const ACTION_STRING = 'Verify Email Address';
 
     public function __construct(
-        private string $email,
-        private Utilities $utilities
+        private string $email
     ) {
         parent::__construct();
 
@@ -31,37 +23,12 @@ readonly class EmailVerificationMessage extends KafkaMessageWrapper
      */
     private function getPayloadArray(): array
     {
-        $subject = Lang::get(self::SUBJECT_STRING);
-        $firstLine = Lang::get(self::FIRST_LINE_STRING);
-        $action = Lang::get(self::ACTION_STRING);
-
-        $mailMessageString = (new MailMessage())
-            ->line(Lang::get('Please click the button below to verify your email address.'))
-            ->action(
-            /** @phpstan-ignore-next-line */
-                Lang::get('Verify Email Address'),
-                $this->utilities->getStringValueFromEnvVariable(
-                    ConfigSpaceName::APP->value,
-                    'emailConfirmationLink'
-                ),
-            )
-            ->line(Lang::get('If you did not create an account, no further action is required.'))
-            ->render()->toHtml();
-
         return [
             'eventId' => Uuid::uuid4(),
             'eventType' => $this->getType(),
             'timestamp' => Carbon::now()->toIso8601String(),
             'data' => [
-                'from' => $this->utilities->getStringValueFromEnvVariable(
-                    ConfigSpaceName::APP->value,
-                    'mailFromAddress'
-                ),
-                'subject' => $subject,
-                /** @phpstan-ignore-next-line */
-                'text' => $firstLine . ' ' . $action,
                 'to' => $this->email,
-                'html' => $mailMessageString
             ],
         ];
     }
@@ -69,5 +36,10 @@ readonly class EmailVerificationMessage extends KafkaMessageWrapper
     protected function getType(): string
     {
         return 'mail.VerificationNotification';
+    }
+
+    public function getTopic(): string
+    {
+        return 'mail-requests';
     }
 }
