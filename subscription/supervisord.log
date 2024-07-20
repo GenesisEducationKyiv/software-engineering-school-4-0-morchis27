@@ -1,0 +1,22 @@
+2024-07-04 18:26:06,910 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:26:06,910 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:26:06,912 INFO supervisord started with pid 34
+2024-07-04 18:36:29,959 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:36:29,960 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:36:29,962 INFO supervisord started with pid 44
+2024-07-04 18:38:37,201 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:38:37,201 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:38:37,203 INFO supervisord started with pid 34
+2024-07-04 18:40:37,661 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:40:37,662 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:40:37,665 INFO supervisord started with pid 34
+2024-07-04 18:45:19,974 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:45:19,974 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:45:19,977 INFO supervisord started with pid 34
+2024-07-04 18:50:34,962 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:50:34,962 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-04 18:50:34,965 INFO supervisord started with pid 35
+2024-07-04 18:50:35,967 INFO spawned: 'php-fpm' with pid 36
+2024-07-04 18:50:35,969 INFO spawned: 'schedule-worker' with pid 37
+2024-07-04 18:50:36,986 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-04 18:50:36,986 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

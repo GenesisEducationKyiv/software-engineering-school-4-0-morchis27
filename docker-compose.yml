@@ -1,70 +1,286 @@
 version: "3.8"
 
 services:
-
-    db:
-        container_name: sds4_db
+    currency:
+        container_name: sds4_currency
         build:
-            context: ./docker/db
-            dockerfile: Dockerfile
-        ports:
-            - "5432:5432"
-        volumes:
-            - ./storage/postgres/:/var/lib/postgresql/data/
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: password
-            POSTGRES_DB: sds4
-        networks:
-            - sds4
-
-    app:
-        container_name: sds4_app
-        build:
-            context: ./docker/php
+            context: ./docker/currency/php
             dockerfile: Dockerfile
         working_dir: /app
         volumes:
-            - ./:/app/
-            - ./docker/php/app.conf:/etc/supervisor/conf.d/app.conf
-            - ./docker/php/supervisord.conf:/etc/supervisor/supervisord.conf
-        depends_on:
-            - db
+            - ./currency:/app
+            - ./docker/currency:/app/docker
         networks:
-            - sds4
+            - currency
+        depends_on:
+            - currency_db
         expose:
             - 9000
-        entrypoint: ["docker/php/init_script.sh"]
+        entrypoint: [ "docker/php/init_script.sh" ]
 
-    web:
-        image: nginx:latest
-        container_name: sds4_web
+    currency_db:
+        container_name: sds4_currency_db
+        build:
+            context: ./docker/currency/db
+            dockerfile: Dockerfile
         ports:
-            - "80:80"
+            - "5434:5432"
+        volumes:
+            - currency_db:/var/lib/postgresql/data/
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: currency
+        networks:
+            - currency
+
+    currency_nginx:
+        container_name: sds4_currency_nginx
+        image: nginx:latest
+        restart: always
+        ports:
+            - "8080:80"
         volumes:
             - ./:/app
-            - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ./docker/currency/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
         depends_on:
-            - app
+            - currency
         networks:
-            - sds4
-    k6:
-        image: grafana/k6
-        container_name: sds4_k6
+            - currency
+            - common-network
+        entrypoint: [ "/bin/sh", "-c", "sleep 15 && nginx -g 'daemon off;'" ]
+
+    subscription:
+        container_name: sds4_subscription
+        build:
+            context: ./docker/subscription/php
+            dockerfile: Dockerfile
+        working_dir: /app
         volumes:
-            - ./tests/k6:/tests
+            - ./subscription:/app
+            - ./docker/subscription:/app/docker
+            - ./docker/subscription/php/subscription.conf:/etc/supervisor/conf.d/subscription.conf
+            - ./docker/subscription/php/supervisord.conf:/etc/supervisor/supervisord.conf
         networks:
-            - sds4
+            - subscription
+            - broker
         depends_on:
-            - web
+            - subscription_db
+        expose:
+            - 9000
+        entrypoint: [ "docker/php/init_script.sh" ]
+
+    subscription_db:
+        container_name: subscription_db
+        build:
+            context: ./docker/subscription/db
+            dockerfile: Dockerfile
+        ports:
+            - "5433:5432"
+        volumes:
+            - subscription_db:/var/lib/postgresql/data/
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: subscription
+        networks:
+            - subscription
+
+    subscription_nginx:
+        container_name: sds4_subscription_nginx
+        image: nginx:latest
+        restart: always
+        ports:
+            - "8081:80"
+        volumes:
+            - ./:/app
+            - ./docker/subscription/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - subscription
+        networks:
+            - subscription
+            - common-network
+        entrypoint: [ "/bin/sh", "-c", "sleep 15 && nginx -g 'daemon off;'" ]
+
+    #    k6:
+    #        image: grafana/k6
+    #        container_name: sds4_k6
+    #        volumes:
+    #            - ./tests/k6:/tests
+    #        networks:
+    #            - sds4
+    #        depends_on:
+    #            - web
+
+    kong-database:
+        container_name: kong_db
+        image: postgres:9
+        restart: always
+        networks:
+            - kong
+        environment:
+            - POSTGRES_USER=kong
+            - POSTGRES_PASSWORD=kong
+            - POSTGRES_DB=kong
+        ports:
+            - "5435:5432"
+
+    kong-migration:
+        container_name: kong_migrations
+        image: kong:latest
+        command: "kong migrations bootstrap && sleep 5"
+        restart: on-failure
+        networks:
+            - kong
+        environment:
+            - KONG_DATABASE=postgres
+            - KONG_PG_HOST=kong-database
+            - KONG_PG_PORT=5432
+            - KONG_PG_USER=kong
+            - KONG_PG_PASSWORD=kong
+            - KONG_PG_DATABASE=kong
+        depends_on:
+            - kong-database
+
+    kong:
+        container_name: kong
+        image: kong:latest
+        restart: always
+        networks:
+            - kong
+            - common-network
+        environment:
+            - KONG_DATABASE=postgres
+            - KONG_PG_HOST=kong-database
+            - KONG_PG_PORT=5432
+            - KONG_PG_USER=kong
+            - KONG_PG_PASSWORD=kong
+            - KONG_PG_DATABASE=kong
+            - KONG_PROXY_ACCESS_LOG=/dev/stdout
+            - KONG_ADMIN_ACCESS_LOG=/dev/stdout
+            - KONG_PROXY_ERROR_LOG=/dev/stderr
+            - KONG_ADMIN_ERROR_LOG=/dev/stderr
+            - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
+        depends_on:
+            - kong-migration
+            - kong-database
+            - subscription_nginx
+            - currency_nginx
+        ports:
+            - "80:8000"
+            - "8443:8443"
+            - "127.0.0.1:8001:8001"
+            - "127.0.0.1:8444:8444"
+
+    kong_init:
+        container_name: kong_init
+        image: curlimages/curl:latest
+        volumes:
+            - ./docker/kong:/script
+        depends_on:
+            - kong
+            - konga
+        command: /script/init_script.sh
+        networks:
+            - common-network
+
+    konga:
+        image: pantsel/konga
+        environment:
+            TOKEN_SECRET: "asdasd"
+            DB_ADAPTER: postgres
+            DB_HOST: kong-database
+            DB_PORT: 5432
+            DB_DATABASE: kong
+            DB_USER: kong
+            DB_PASSWORD: kong
+            NODE_ENV: development
+            KONGA_HOOK_TIMEOUT: 10000
+        restart: always
+        ports:
+            - "1337:1337"
+        depends_on:
+            - kong-database
+        networks:
+            - kong
+
+    zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        environment:
+            ZOOKEEPER_CLIENT_PORT: 2181
+            ZOOKEEPER_TICK_TIME: 2000
+        ports:
+            - 2181:2181
+        networks:
+            - broker
+            - common-network
+
+    kafka:
+        image: confluentinc/cp-kafka:latest
+        depends_on:
+            - zookeeper
+        ports:
+            - 9092:9092
+            - 29092:29092
+        environment:
+            KAFKA_BROKER_ID: 1
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+            KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        networks:
+            - broker
+
+    kafka_init:
+        container_name: kafka_init
+        image: confluentinc/cp-kafka:latest
+        volumes:
+            - ./docker/kafka:/script
+        depends_on:
+            - kafka
+        command: /script/init_script.sh
+        networks:
+            - broker
+
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - "8025:8025"
+            - "1025:1025"
+        networks:
+            - broker
+
+    mailer:
+        build:
+            context: ./docker/mail
+            dockerfile: Dockerfile
+        depends_on:
+            - kafka
+            - mailhog
+        environment:
+            KAFKA_BROKER: kafka:9092
+            SMTP_HOST: mailhog
+            SMTP_PORT: 1025
+        networks:
+            - broker
+
+volumes:
+    currency_db:
+        driver: local
+    subscription_db:
+        driver: local
+    kafka_data:
+        driver: local
 
 networks:
-    sds4:
+    subscription:
         driver: bridge
-        ipam:
-            config:
-                -   subnet: ${DOCKER_NETWORK}
-
-
-
-
+    currency:
+        driver: bridge
+    common-network:
+        driver: bridge
+    kong:
+        driver: bridge
+    broker:
+        driver: bridge
