@@ -1,0 +1,113 @@
+2024-07-04 18:26:06,910 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:26:06,910 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:26:06,912 INFO supervisord started with pid 34
+2024-07-04 18:36:29,959 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:36:29,960 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:36:29,962 INFO supervisord started with pid 44
+2024-07-04 18:38:37,201 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:38:37,201 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:38:37,203 INFO supervisord started with pid 34
+2024-07-04 18:40:37,661 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:40:37,662 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:40:37,665 INFO supervisord started with pid 34
+2024-07-04 18:45:19,974 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:45:19,974 WARN No file matches via include "/etc/supervisor/conf.d/app.conf"
+2024-07-04 18:45:19,977 INFO supervisord started with pid 34
+2024-07-04 18:50:34,962 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-04 18:50:34,962 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-04 18:50:34,965 INFO supervisord started with pid 35
+2024-07-04 18:50:35,967 INFO spawned: 'php-fpm' with pid 36
+2024-07-04 18:50:35,969 INFO spawned: 'schedule-worker' with pid 37
+2024-07-04 18:50:36,986 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-04 18:50:36,986 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-09 16:04:48,671 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-09 16:04:48,671 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-09 16:04:48,675 INFO supervisord started with pid 34
+2024-07-09 16:04:49,678 INFO spawned: 'php-fpm' with pid 35
+2024-07-09 16:04:49,679 INFO spawned: 'schedule-worker' with pid 36
+2024-07-09 16:04:50,694 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-09 16:04:50,694 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-09 16:10:13,637 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-09 16:10:13,638 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-09 16:10:13,640 INFO supervisord started with pid 34
+2024-07-09 16:10:14,643 INFO spawned: 'php-fpm' with pid 35
+2024-07-09 16:10:14,644 INFO spawned: 'schedule-worker' with pid 36
+2024-07-09 16:10:15,658 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-09 16:10:15,659 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-18 11:50:59,664 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-18 11:50:59,664 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-18 11:50:59,668 INFO supervisord started with pid 34
+2024-07-18 11:51:00,670 INFO spawned: 'php-fpm' with pid 35
+2024-07-18 11:51:00,672 INFO spawned: 'schedule-worker' with pid 36
+2024-07-18 11:51:01,687 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-18 11:51:01,688 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-18 12:05:30,498 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-18 12:05:30,498 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-18 12:05:30,501 INFO supervisord started with pid 33
+2024-07-18 12:05:31,503 INFO spawned: 'php-fpm' with pid 34
+2024-07-18 12:05:31,505 INFO spawned: 'schedule-worker' with pid 35
+2024-07-18 12:05:32,529 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-18 12:05:32,530 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-18 12:07:30,906 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-18 12:07:30,906 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-18 12:07:30,908 INFO supervisord started with pid 34
+2024-07-18 12:07:31,911 INFO spawned: 'php-fpm' with pid 35
+2024-07-18 12:07:31,913 INFO spawned: 'schedule-worker' with pid 36
+2024-07-18 12:07:32,927 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-18 12:07:32,928 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-18 12:12:52,089 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-18 12:12:52,090 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-18 12:12:52,092 INFO supervisord started with pid 34
+2024-07-18 12:12:53,093 INFO spawned: 'php-fpm' with pid 35
+2024-07-18 12:12:53,096 INFO spawned: 'schedule-worker' with pid 36
+2024-07-18 12:12:54,120 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-18 12:12:54,120 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 19:06:26,544 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-19 19:06:26,545 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-19 19:06:26,549 INFO supervisord started with pid 34
+2024-07-19 19:06:27,551 INFO spawned: 'php-fpm' with pid 35
+2024-07-19 19:06:27,553 INFO spawned: 'schedule-worker' with pid 36
+2024-07-19 19:06:28,568 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 19:06:28,568 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 19:07:54,285 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-19 19:07:54,285 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-19 19:07:54,289 INFO supervisord started with pid 34
+2024-07-19 19:07:55,291 INFO spawned: 'php-fpm' with pid 35
+2024-07-19 19:07:55,292 INFO spawned: 'schedule-worker' with pid 36
+2024-07-19 19:07:56,308 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 19:07:56,308 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 19:21:43,908 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-19 19:21:43,908 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-19 19:21:43,910 INFO supervisord started with pid 34
+2024-07-19 19:21:44,913 INFO spawned: 'php-fpm' with pid 35
+2024-07-19 19:21:44,915 INFO spawned: 'schedule-worker' with pid 36
+2024-07-19 19:21:45,931 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 19:21:45,931 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 21:35:31,379 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-19 21:35:31,380 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-19 21:35:31,383 INFO supervisord started with pid 34
+2024-07-19 21:35:32,385 INFO spawned: 'php-fpm' with pid 35
+2024-07-19 21:35:32,386 INFO spawned: 'schedule-worker' with pid 36
+2024-07-19 21:35:33,400 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 21:35:33,403 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 21:39:11,727 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-19 21:39:11,728 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-19 21:39:11,730 INFO supervisord started with pid 34
+2024-07-19 21:39:12,732 INFO spawned: 'php-fpm' with pid 35
+2024-07-19 21:39:12,733 INFO spawned: 'schedule-worker' with pid 36
+2024-07-19 21:39:13,748 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-19 21:39:13,748 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-20 10:51:32,359 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-20 10:51:32,359 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-20 10:51:32,363 INFO supervisord started with pid 34
+2024-07-20 10:51:33,365 INFO spawned: 'php-fpm' with pid 35
+2024-07-20 10:51:33,367 INFO spawned: 'schedule-worker' with pid 36
+2024-07-20 10:51:34,382 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-20 10:51:34,382 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-20 12:06:17,281 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-20 12:06:17,281 INFO Included extra file "/etc/supervisor/conf.d/subscription.conf" during parsing
+2024-07-20 12:06:17,284 INFO supervisord started with pid 34
+2024-07-20 12:06:18,286 INFO spawned: 'php-fpm' with pid 35
+2024-07-20 12:06:18,287 INFO spawned: 'schedule-worker' with pid 36
+2024-07-20 12:06:19,302 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-20 12:06:19,303 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
