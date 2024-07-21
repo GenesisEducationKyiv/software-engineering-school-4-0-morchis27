@@ -77,7 +77,7 @@ jobs:
         working-directory: ./mailer
       - name: Execute PHPSTAN in subscription service
         run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 256M
-        working-directory: ./subscription
+        working-directory: ./mailer
       - name: Execute PHPCS in subscription service
         run: ./vendor/bin/phpcs -v --standard=phpcs.xml app tests
         working-directory: ./mailer
