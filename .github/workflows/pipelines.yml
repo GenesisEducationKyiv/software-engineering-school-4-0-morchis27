@@ -80,4 +80,4 @@ jobs:
         working-directory: ./subscription
       - name: Execute PHPCS in subscription service
         run: ./vendor/bin/phpcs -v --standard=phpcs.xml app tests
-        working-directory: ./subscription
+        working-directory: ./mailer
