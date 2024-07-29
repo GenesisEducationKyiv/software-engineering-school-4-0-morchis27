@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Repository;
 
-use App\DTO\CreationDTO\Subscriber\SubscriberDTO;
+use App\DTO\CreationDTO\Subscriber\CustomerDTO;
 use App\DTO\CreationDTO\Subscriber\UpdateSubscriberDTO;
 use App\Models\Subscriber;
-use App\Repository\Subscriber\SubscriberRepository;
-use App\Repository\Subscriber\SubscriberRepositoryInterface;
+use App\Repository\Subscriber\CustomerRepository;
+use App\Repository\Subscriber\CustomerRepositoryInterface;
 use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -19,7 +19,7 @@ class SubscriberRepositoryTest extends TestCase
 {
     use RefreshDatabase;
 
-    private SubscriberRepositoryInterface $repository;
+    private CustomerRepositoryInterface $repository;
 
     /**
      * @throws ContainerExceptionInterface
@@ -29,7 +29,7 @@ class SubscriberRepositoryTest extends TestCase
     {
         parent::setUp();
         // @phpstan-ignore-next-line
-        $this->repository = new SubscriberRepository($this->app->make(Subscriber::class));
+        $this->repository = new CustomerRepository($this->app->make(Subscriber::class));
     }
 
     public function testFindByIdReturnsSubscriber(): void
@@ -62,7 +62,7 @@ class SubscriberRepositoryTest extends TestCase
         $request->setMethod('POST');
         $request->request->add(['email' => $email]);
 
-        $createSubscriberDTO = new SubscriberDTO();
+        $createSubscriberDTO = new CustomerDTO();
         $createSubscriberDTO->fillByRequest($request);
 
         $subscriber = $this->repository->create($createSubscriberDTO);

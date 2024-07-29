@@ -1,11 +1,11 @@
 <?php
 
-namespace App\DTO\CreationDTO\Subscriber;
+namespace App\DTO\CreationDTO\Customer;
 
 use App\DTO\RequestFillableDTOInterface;
 use Illuminate\Http\Request;
 
-class SubscriberDTO extends AbstractSubscriberDTO implements RequestFillableDTOInterface
+class CustomerDTO extends AbstractCustomerDTO implements RequestFillableDTOInterface
 {
     /**
      * @param Request $request

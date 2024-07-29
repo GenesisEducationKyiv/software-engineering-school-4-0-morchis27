@@ -7,7 +7,9 @@ use App\Http\Requests\DeleteSubscriberRequest;
 use App\Http\Requests\StoreSubscriberRequest;
 use App\Models\Subscriber;
 use App\Service\Subscription\SubscriptionServiceInterface;
+use App\Workflows\SubscribeWorkflow;
 use Illuminate\Http\JsonResponse;
+use Workflow\WorkflowStub;
 
 class SubscriptionController extends Controller
 {
@@ -19,12 +21,13 @@ class SubscriptionController extends Controller
     /**
      * @param StoreSubscriberRequest $request
      * @return JsonResponse
-     * @throws ModelNotSavedException
      */
     public function subscribe(StoreSubscriberRequest $request): JsonResponse
     {
         $createSubscriberDto = $this->subscriptionService->makeSubscriberDTO($request);
-        $this->subscriptionService->subscribe($createSubscriberDto);
+
+        $saga = WorkflowStub::make(SubscribeWorkflow::class);
+        $saga->start($createSubscriberDto->getEmail());
 
         return $this->successResponse(null, 200);
     }
@@ -38,6 +41,7 @@ class SubscriptionController extends Controller
     }
 
     /**
+     * @param Subscriber $subscriber
      * @return JsonResponse
      */
     public function verify(Subscriber $subscriber): JsonResponse

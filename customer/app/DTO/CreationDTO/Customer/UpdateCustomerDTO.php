@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DTO\CreationDTO\Subscriber;
+namespace App\DTO\CreationDTO\Customer;
 
-class UpdateSubscriberDTO extends AbstractSubscriberDTO
+class UpdateCustomerDTO extends AbstractCustomerDTO
 {
     public function __construct(
         private string $id

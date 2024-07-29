@@ -3,21 +3,17 @@
 namespace Tests\Unit\Service;
 
 use App\DTO\CreationDTO\Subscriber\SubscriberDTO;
-use App\DTO\VerificationDTO\BasicVerificationDTOInterface;
 use App\Events\Subscribed;
 use App\Exceptions\ModelNotSavedException;
 use App\Http\Requests\StoreSubscriberRequest;
-use App\Models\NotifiableInterface;
 use App\Models\Subscriber;
 use App\Repository\Subscriber\SubscriberRepositoryInterface;
-use App\Service\Message\Messages\EmailVerificationMessage;
 use App\Service\MessageBroker\MessageBrokerInterface;
 use App\Service\Subscription\SubscriptionService;
 use App\Service\Subscription\SubscriptionServiceInterface;
-use App\Utils\Utilities;
+use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Event;
 use PHPUnit\Framework\MockObject\Exception;
-use Faker\Factory as Faker;
 use PHPUnit\Framework\MockObject\MockObject;
 use Tests\TestCase;
 

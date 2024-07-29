@@ -1,5 +1,5 @@
 FROM nginx:latest
 
-COPY nginx.conf /etc/nginx/conf.d/currency.conf
+COPY nginx.conf /etc/nginx/conf.d/customer.conf
 
 EXPOSE 80

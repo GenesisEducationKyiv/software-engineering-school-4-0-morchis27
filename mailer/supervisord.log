@@ -200,3 +200,59 @@
 2024-07-20 12:06:17,716 INFO spawned: 'schedule-worker' with pid 36
 2024-07-20 12:06:18,730 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2024-07-20 12:06:18,730 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-20 19:55:51,312 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-20 19:55:51,312 INFO Included extra file "/etc/supervisor/conf.d/mailer.conf" during parsing
+2024-07-20 19:55:51,316 INFO supervisord started with pid 35
+2024-07-20 19:55:52,317 INFO spawned: 'php-fpm' with pid 36
+2024-07-20 19:55:52,319 INFO spawned: 'schedule-worker' with pid 37
+2024-07-20 19:55:53,361 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-20 19:55:53,361 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-28 18:00:07,648 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-28 18:00:07,648 INFO Included extra file "/etc/supervisor/conf.d/mailer.conf" during parsing
+2024-07-28 18:00:07,653 INFO supervisord started with pid 34
+2024-07-28 18:00:08,655 INFO spawned: 'php-fpm' with pid 35
+2024-07-28 18:00:08,657 INFO spawned: 'schedule-worker' with pid 36
+2024-07-28 18:00:09,692 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-28 18:00:09,692 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 10:24:16,698 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-29 10:24:16,698 INFO Included extra file "/etc/supervisor/conf.d/mailer.conf" during parsing
+2024-07-29 10:24:16,702 INFO supervisord started with pid 34
+2024-07-29 10:24:17,704 INFO spawned: 'php-fpm' with pid 35
+2024-07-29 10:24:17,706 INFO spawned: 'schedule-worker' with pid 36
+2024-07-29 10:24:18,752 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 10:24:18,752 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 11:28:02,661 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-29 11:28:02,662 INFO Included extra file "/etc/supervisor/conf.d/mailer.conf" during parsing
+2024-07-29 11:28:02,665 INFO supervisord started with pid 35
+2024-07-29 11:28:03,667 INFO spawned: 'php-fpm' with pid 36
+2024-07-29 11:28:03,668 INFO spawned: 'schedule-worker' with pid 37
+2024-07-29 11:28:04,684 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 11:28:04,684 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 11:57:34,963 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-29 11:57:34,963 INFO Included extra file "/etc/supervisor/conf.d/mailer.conf" during parsing
+2024-07-29 11:57:34,966 INFO supervisord started with pid 34
+2024-07-29 11:57:35,968 INFO spawned: 'php-fpm' with pid 35
+2024-07-29 11:57:35,970 INFO spawned: 'schedule-worker' with pid 36
+2024-07-29 11:57:36,984 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 11:57:36,984 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 12:03:38,176 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-29 12:03:38,177 INFO Included extra file "/etc/supervisor/conf.d/mailer.conf" during parsing
+2024-07-29 12:03:38,179 INFO supervisord started with pid 34
+2024-07-29 12:03:39,182 INFO spawned: 'php-fpm' with pid 35
+2024-07-29 12:03:39,183 INFO spawned: 'schedule-worker' with pid 36
+2024-07-29 12:03:40,198 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 12:03:40,198 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 12:08:59,812 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-29 12:08:59,812 INFO Included extra file "/etc/supervisor/conf.d/mailer.conf" during parsing
+2024-07-29 12:08:59,815 INFO supervisord started with pid 34
+2024-07-29 12:09:00,817 INFO spawned: 'php-fpm' with pid 35
+2024-07-29 12:09:00,818 INFO spawned: 'schedule-worker' with pid 36
+2024-07-29 12:09:01,833 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 12:09:01,833 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 12:11:17,590 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-07-29 12:11:17,590 INFO Included extra file "/etc/supervisor/conf.d/mailer.conf" during parsing
+2024-07-29 12:11:17,593 INFO supervisord started with pid 34
+2024-07-29 12:11:18,595 INFO spawned: 'php-fpm' with pid 35
+2024-07-29 12:11:18,597 INFO spawned: 'schedule-worker' with pid 36
+2024-07-29 12:11:19,611 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-07-29 12:11:19,612 INFO success: schedule-worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
